@@ -19,39 +19,29 @@ MonoBehaviour:
       m_GuidLow: 5168197684596923070
       m_GuidHigh: 10570923723540593304
     m_SerializedTextureGuid:
-      m_GuidLow: 0
-      m_GuidHigh: 0
-    m_Size: {x: 0, y: 0}
-    m_SpecifySize: 0
-    m_Name: Player1
-    m_Texture: {fileID: 0}
-  - m_SerializedGuid:
-      m_GuidLow: 4929821544588103534
-      m_GuidHigh: 18394254099635376043
-    m_SerializedTextureGuid:
-      m_GuidLow: 0
-      m_GuidHigh: 0
-    m_Size: {x: 0, y: 0}
-    m_SpecifySize: 0
-    m_Name: Player2
+      m_GuidLow: 555217250476495898
+      m_GuidHigh: 1573703683330366251
+    m_Size: {x: 0.1, y: 0.1}
+    m_SpecifySize: 1
+    m_Name: P1
     m_Texture: {fileID: 0}
   - m_SerializedGuid:
       m_GuidLow: 5252831568289807148
       m_GuidHigh: 16412794451927354033
     m_SerializedTextureGuid:
-      m_GuidLow: 0
-      m_GuidHigh: 0
-    m_Size: {x: 0, y: 0}
-    m_SpecifySize: 0
-    m_Name: Player3
+      m_GuidLow: 8143697407771071612
+      m_GuidHigh: 6137283826609997880
+    m_Size: {x: 0.1, y: 0.1}
+    m_SpecifySize: 1
+    m_Name: P3
     m_Texture: {fileID: 0}
   - m_SerializedGuid:
       m_GuidLow: 5654573529545559976
       m_GuidHigh: 11614095647847433117
     m_SerializedTextureGuid:
-      m_GuidLow: 0
-      m_GuidHigh: 0
-    m_Size: {x: 0, y: 0}
-    m_SpecifySize: 0
-    m_Name: Player4
+      m_GuidLow: 14201103604189152353
+      m_GuidHigh: 3368988655134081211
+    m_Size: {x: 0.1, y: 0.1}
+    m_SpecifySize: 1
+    m_Name: P4
     m_Texture: {fileID: 0}
