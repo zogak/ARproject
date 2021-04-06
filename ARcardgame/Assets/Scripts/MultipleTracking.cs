@@ -20,11 +20,12 @@ public class MultipleTracking : MonoBehaviour
     {
         trackedImgMgr = FindObjectOfType<ARTrackedImageManager>();
 
-        foreach (PlaceablePrefab prefab in placeablePrefabs)
+        foreach (PlaceablePrefab pr in placeablePrefabs)
         {
-            GameObject go = Instantiate(prefab.prefab, Vector3.zero, Quaternion.identity);
-            go.name = prefab.name;
-            spawnedPrefabs.Add(prefab.name, go);
+            GameObject go = Instantiate(pr.prefab, Vector3.zero, Quaternion.Euler(-40f, 17f, -124f));
+            
+            go.name = pr.name;
+            spawnedPrefabs.Add(pr.name, go);
         }
     }
 

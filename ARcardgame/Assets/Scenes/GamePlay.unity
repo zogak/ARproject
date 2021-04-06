@@ -305,6 +305,8 @@ MonoBehaviour:
   placeablePrefabs:
   - name: P1
     prefab: {fileID: 5571261242694599572, guid: df118aa837bb55145bd35030482297f8, type: 3}
+  - name: P2
+    prefab: {fileID: 5571261242694599572, guid: df118aa837bb55145bd35030482297f8, type: 3}
   - name: P3
     prefab: {fileID: 5571261242694599572, guid: df118aa837bb55145bd35030482297f8, type: 3}
   - name: P4
@@ -322,7 +324,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_SerializedLibrary: {fileID: 11400000, guid: de78f915943a5d44b8200944e9490804, type: 2}
-  m_MaxNumberOfMovingImages: 3
+  m_MaxNumberOfMovingImages: 0
   m_TrackedImagePrefab: {fileID: 0}
 --- !u!1 &1040459888
 GameObject:

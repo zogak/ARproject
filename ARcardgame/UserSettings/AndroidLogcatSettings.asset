@@ -3,7 +3,7 @@
     "m_SelectedPackage": {
         "deviceId": "ce02193249767e1901",
         "name": "com.DefaultCompany.ARcardgame",
-        "processId": 19631,
+        "processId": 4867,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -36,6 +36,36 @@
             "deviceId": "ce02193249767e1901",
             "name": "com.DefaultCompany.ARcardgame",
             "processId": 19631,
+            "exited": false
+        },
+        {
+            "deviceId": "ce02193249767e1901",
+            "name": "com.DefaultCompany.ARcardgame",
+            "processId": 14801,
+            "exited": false
+        },
+        {
+            "deviceId": "ce02193249767e1901",
+            "name": "com.DefaultCompany.ARcardgame",
+            "processId": 17179,
+            "exited": false
+        },
+        {
+            "deviceId": "ce02193249767e1901",
+            "name": "com.DefaultCompany.ARcardgame",
+            "processId": 19794,
+            "exited": false
+        },
+        {
+            "deviceId": "ce02193249767e1901",
+            "name": "com.DefaultCompany.ARcardgame",
+            "processId": 22608,
+            "exited": false
+        },
+        {
+            "deviceId": "ce02193249767e1901",
+            "name": "com.DefaultCompany.ARcardgame",
+            "processId": 4867,
             "exited": false
         }
     ],
