@@ -23,6 +23,8 @@ public class SpawnObjects : MonoBehaviour
         {
             // Instantiate(objectToSpawn, indicator.transform.position, indicator.transform.rotation);
             Instantiate(objectToSpawn, transform.position, transform.rotation);
+            
+
         }
     }
 }
