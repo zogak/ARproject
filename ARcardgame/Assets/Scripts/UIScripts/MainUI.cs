@@ -14,7 +14,7 @@ public class MainUI : MonoBehaviour
 
     public void JoinRoom()
     {
-        SceneManager.LoadScene("GameAccess");
+        SceneManager.LoadScene("GamePlay");
     }
 
     public void QuitGame()
