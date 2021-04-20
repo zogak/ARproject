@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4465782, g: 0.49641252, b: 0.5748167, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -227,7 +227,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54ffbc7abc30bee4c9834c3210663c2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  board: {fileID: 423381773183136079, guid: 76fce07094412f64bbcb7988b814374d, type: 3}
   objectToSpawn: {fileID: 6072561671439004618, guid: 6196c545f00731c449ed070bbf72215d, type: 3}
+  playerChip: {fileID: 6072561671439004618, guid: 6196c545f00731c449ed070bbf72215d, type: 3}
+  comChip: {fileID: 405909634723295336, guid: 922eaeb803d6d8a4aae936eaf2cf6b8b, type: 3}
+  setBoard: 0
 --- !u!114 &462207684
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -569,7 +573,7 @@ MeshCollider:
   m_GameObject: {fileID: 1345410144}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
