@@ -46,15 +46,15 @@ public class ProcessTextChange : MonoBehaviour
         }
         
         //순서가 정해지고 나면 카드를 배분한다는 텍스트로 변환
-        if (!(GameSettings.order== -1) && !orderEnd)
+        if (!(GameManager.manager.orderNum== -1) && !orderEnd)
         {
-            if(GameSettings.order == 0)
+            if(GameManager.manager.orderNum == 0)
             {
                 processText.SetText("You will bet first!");
                 orderEnd = true;
                 Invoke("DividingText", 2);
             }
-            else if(GameSettings.order == 1)
+            else if(GameManager.manager.orderNum == 1)
             {
                 processText.SetText("Com will bet first!");
                 orderEnd = true;
@@ -73,7 +73,7 @@ public class ProcessTextChange : MonoBehaviour
     private void DividingText()
     {
         processText.SetText("Cards are being distributed...");
-        GameSettings.canCardDivide = true;
+        GameManager.manager.canCardDivide = true;
         Invoke("NextScene", 3);
     }
 
@@ -81,6 +81,7 @@ public class ProcessTextChange : MonoBehaviour
     {
         processText.SetText("If you have checked Com's card, let's go for a bet!");
         allReady = true;
+        return;
     }
 
 }
