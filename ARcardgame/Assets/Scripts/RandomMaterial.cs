@@ -15,7 +15,7 @@ public class RandomMaterial : MonoBehaviour
         renderer = GetComponent<Renderer>();
         ChangeMaterial();
     }
-    
+
     public void ChangeMaterial()
     {
         renderer.material = SelectRandomMaterial();

@@ -7,6 +7,7 @@ TagManager:
   - Arrow
   - board
   - Value
+  - Chip
   layers:
   - Default
   - TransparentFX

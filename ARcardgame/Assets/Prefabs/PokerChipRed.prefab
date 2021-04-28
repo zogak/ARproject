@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3550853694179001780}
   m_Layer: 0
   m_Name: PokerChipRed
-  m_TagString: Untagged
+  m_TagString: Chip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

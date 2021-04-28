@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager manager; //다른 script에서 GameManager.manager로 접근하면 변수, 메소드 사용 가능
 
-    public int orderNum = -1; //0이면 player 차례인 상태, 1이면 com 차례인 상태
+    public int orderNum = 3; //0이면 player 차례인 상태, 1이면 com 차례인 상태
     public bool canCardDivide = false;
 
     public bool activate = false; //일정 텍스트 출력 후 베팅 또는 다이 선택을 가능하게 하는 상태 - S2ProcessText와 SpawnObjects 등에서 관리
