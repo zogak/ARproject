@@ -47,13 +47,13 @@ public class WhoFirst : MonoBehaviour
         {
             if(n==1) //컴퓨터 선
             {
-                GameSettings.order = 1;
+                GameManager.manager.orderNum = 1;
                 transform.rotation = Quaternion.Euler(0, -90, 180);
                 Destroy(first, 4);
             }
             else //플레이어 선
             {
-                GameSettings.order = 0;
+                GameManager.manager.orderNum = 0;
                 transform.rotation = Quaternion.Euler(0, 90, 180);
                 Destroy(first, 4);
             }

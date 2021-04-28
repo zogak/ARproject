@@ -67,7 +67,7 @@ public class MultipleTracking : MonoBehaviour
         GameObject prefab = spawnedPrefabs[imgName];
         
         //카드를 분배해도 괜찮은 상황(canCardDivide가 true)이면 마커 위에 카드가 뜨게 한다.
-        if (img.trackingState == TrackingState.Tracking && GameSettings.canCardDivide)
+        if (img.trackingState == TrackingState.Tracking && GameManager.manager.canCardDivide)
         {
             prefab.transform.position = img.transform.position;
             //prefab.transform.rotation = img.transform.rotation;
