@@ -13,20 +13,20 @@ public class SpawnObjects : MonoBehaviour
     int player_bet = 0;
     int k = 1;
     //saveValue getTurn;
-    int turn;
-
+    //int turn = 3;
 
     void Start()
     {
 
         //getTurn = GameObject.Find("Value").GetComponent<saveValue>();
-        turn = GameManager.manager.orderNum;
+        //turn = GameManager.manager.orderNum;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        turn = GameManager.manager.orderNum;
+        //turn = GameManager.manager.orderNum;
 
         if (setBoard == 0) //게임판 instantiate
         {
@@ -41,7 +41,8 @@ public class SpawnObjects : MonoBehaviour
 
         else if(setBoard == 1) //게임판 세팅 이후
         {
-            if (turn == 0 && GameManager.manager.activate) //플레이어 활동
+            if (GameManager.manager.orderNum == 0 && GameManager.manager.activate) //플레이어 활동
+            //if(GameManager.manager.orderNum == 0)
             {
                 if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began)
                 {
@@ -51,12 +52,14 @@ public class SpawnObjects : MonoBehaviour
                 }
                 GameManager.manager.playerBets = player_bet; //생성된 오브젝트 수 만큼 베팅수로 계산해 manager에 저장
             }
-            else if(turn == 1 && GameManager.manager.activate) //com 활동
+            //else if(GameManager.manager.orderNum == 1)
+            else if(GameManager.manager.orderNum == 1 && GameManager.manager.activate) //com 활동
             {
                 com_bet = GameManager.manager.comBets; //manager에서 컴이 베팅하는 수 가져옴
 
                 StartCoroutine(ComBetting());
                 GameManager.manager.activate = false; //활동 끝
+                GameManager.manager.orderNum = 0;
                 //turn = 0; // com betting 후 player turn으로 넘어가기, turn을 GameManager에서 받아올 수 있도록 바꾸고 싶어요!
             }
         }

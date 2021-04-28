@@ -1,9 +1,9 @@
 {
-    "m_SelectedDeviceId": "R3CN80A0FDZ",
+    "m_SelectedDeviceId": "ce091719538fa8590b7e",
     "m_SelectedPackage": {
-        "deviceId": "R3CN80A0FDZ",
+        "deviceId": "ce091719538fa8590b7e",
         "name": "com.DefaultCompany.ARcardgame",
-        "processId": 16614,
+        "processId": 22680,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -106,92 +106,80 @@
         },
         {
             "deviceId": "ce091719538fa8590b7e",
+            "name": "com.sec.android.app.launcher",
+            "processId": 11765,
+            "exited": false
+        },
+        {
+            "deviceId": "ce091719538fa8590b7e",
             "name": "com.DefaultCompany.ARcardgame",
-            "processId": 7381,
+            "processId": 15675,
             "exited": true
         },
         {
             "deviceId": "ce091719538fa8590b7e",
             "name": "com.DefaultCompany.ARcardgame",
-            "processId": 9058,
+            "processId": 20401,
             "exited": true
         },
         {
             "deviceId": "ce091719538fa8590b7e",
             "name": "com.DefaultCompany.ARcardgame",
-            "processId": 10308,
+            "processId": 25348,
             "exited": true
         },
         {
             "deviceId": "ce091719538fa8590b7e",
             "name": "com.DefaultCompany.ARcardgame",
-            "processId": 12657,
+            "processId": 26308,
             "exited": true
         },
         {
             "deviceId": "ce091719538fa8590b7e",
             "name": "com.DefaultCompany.ARcardgame",
-            "processId": 14012,
+            "processId": 28226,
             "exited": true
         },
         {
             "deviceId": "ce091719538fa8590b7e",
             "name": "com.DefaultCompany.ARcardgame",
-            "processId": 16661,
+            "processId": 5277,
             "exited": false
         },
         {
             "deviceId": "ce091719538fa8590b7e",
             "name": "com.DefaultCompany.ARcardgame",
-            "processId": 18907,
+            "processId": 7683,
             "exited": false
         },
         {
             "deviceId": "ce091719538fa8590b7e",
             "name": "com.DefaultCompany.ARcardgame",
-            "processId": 20276,
+            "processId": 10932,
             "exited": false
         },
         {
             "deviceId": "ce091719538fa8590b7e",
             "name": "com.DefaultCompany.ARcardgame",
-            "processId": 21551,
+            "processId": 13563,
             "exited": false
         },
         {
             "deviceId": "ce091719538fa8590b7e",
             "name": "com.DefaultCompany.ARcardgame",
-            "processId": 22535,
+            "processId": 16105,
             "exited": false
         },
         {
             "deviceId": "ce091719538fa8590b7e",
             "name": "com.DefaultCompany.ARcardgame",
-            "processId": 25075,
+            "processId": 18909,
             "exited": false
         },
         {
             "deviceId": "ce091719538fa8590b7e",
             "name": "com.DefaultCompany.ARcardgame",
-            "processId": 27167,
-            "exited": false
-        },
-        {
-            "deviceId": "ce091719538fa8590b7e",
-            "name": "com.DefaultCompany.ARcardgame",
-            "processId": 29815,
-            "exited": false
-        },
-        {
-            "deviceId": "ce091719538fa8590b7e",
-            "name": "com.DefaultCompany.ARcardgame",
-            "processId": 31092,
-            "exited": false
-        },
-        {
-            "deviceId": "ce091719538fa8590b7e",
-            "name": "com.DefaultCompany.ARcardgame",
-            "processId": 32273,
+            "processId": 22680,
             "exited": false
         },
         {

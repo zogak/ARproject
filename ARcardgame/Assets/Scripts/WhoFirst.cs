@@ -41,7 +41,7 @@ public class WhoFirst : MonoBehaviour
 
         if(a==1)
         {
-            first.transform.Rotate(new Vector3(0, 0, 90));
+            first.transform.Rotate(new Vector3(0, 0, 90*Time.deltaTime*20));
         }
         else
         {
