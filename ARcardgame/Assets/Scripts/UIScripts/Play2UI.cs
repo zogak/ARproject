@@ -15,24 +15,33 @@ public class Play2UI : MonoBehaviour
 
     public Image comCard;
 
+    public S2ProcessText process;
+
     public void DieButton()
     {
         GameManager.manager.currentPlayerState = 1;
+        GameManager.manager.activate = false;
+        okButton.interactable = false;
+        dieButton.interactable = false;
+        process.SendMessage("WhoDied");
     }
 
     public void OKButton()
     {
         GameManager.manager.activate = false;
         Debug.Log("activate is " + GameManager.manager.activate);
+        okButton.interactable = false;
+        dieButton.interactable = false;
+        process.SendMessage("NextTurn");
     }
 
-    public void UpdateComText()
+    public void UpdateComText(int update)
     {
-
+        comChips.SetText("X " + update);
     }
 
-    public void UpdatePText()
+    public void UpdatePText(int update)
     {
-
+        playerChips.SetText("X " + update);
     }
 }
