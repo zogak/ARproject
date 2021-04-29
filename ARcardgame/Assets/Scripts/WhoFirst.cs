@@ -24,45 +24,49 @@ public class WhoFirst : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //arrow 터치됐는지 확인.
-        if(TryGetTouchPosition(out Vector2 touchPosition))
+        if (GameManager.manager.activate)
         {
-            Ray ray = Camera.main.ScreenPointToRay(touchPosition);
-            RaycastHit hit;
-
-            if(Physics.Raycast(ray, out hit, Mathf.Infinity))
+            //arrow 터치됐는지 확인.
+            if (TryGetTouchPosition(out Vector2 touchPosition))
             {
-                if (hit.transform.CompareTag("Arrow"))
+                Ray ray = Camera.main.ScreenPointToRay(touchPosition);
+                RaycastHit hit;
+
+                if (Physics.Raycast(ray, out hit, Mathf.Infinity))
                 {
-                    a = 0;
+                    if (hit.transform.CompareTag("Arrow"))
+                    {
+                        a = 0;
+                    }
                 }
             }
+
+            if (a == 1)
+            {
+                first.transform.Rotate(new Vector3(0, 0, 90 * Time.deltaTime * 20));
+            }
+            else
+            {
+                if (n == 1) //컴퓨터 선
+                {
+                    GameManager.manager.orderNum = 1;
+                    transform.rotation = Quaternion.Euler(0, -90, 180);
+                    Destroy(first, 4);
+                }
+                else //플레이어 선
+                {
+                    GameManager.manager.orderNum = 0;
+                    transform.rotation = Quaternion.Euler(0, 90, 180);
+                    Destroy(first, 4);
+                }
+
+            }
+            /*if (Input.GetMouseButtonDown(0))
+            {
+                a = 0;
+            }*/
         }
 
-        if(a==1)
-        {
-            first.transform.Rotate(new Vector3(0, 0, 90*Time.deltaTime*20));
-        }
-        else
-        {
-            if(n==1) //컴퓨터 선
-            {
-                GameManager.manager.orderNum = 1;
-                transform.rotation = Quaternion.Euler(0, -90, 180);
-                Destroy(first, 4);
-            }
-            else //플레이어 선
-            {
-                GameManager.manager.orderNum = 0;
-                transform.rotation = Quaternion.Euler(0, 90, 180);
-                Destroy(first, 4);
-            }
-
-        }
-        /*if (Input.GetMouseButtonDown(0))
-        {
-            a = 0;
-        }*/
     }
 
     bool TryGetTouchPosition(out Vector2 touchPosition)
