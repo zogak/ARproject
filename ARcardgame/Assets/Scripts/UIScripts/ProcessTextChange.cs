@@ -16,6 +16,7 @@ public class ProcessTextChange : MonoBehaviour
     int num;
 
     private bool allReady = false;
+    //public bool cardMade = false;
 
     void Start()
     {
@@ -29,20 +30,24 @@ public class ProcessTextChange : MonoBehaviour
 
         num = (int)time;
 
-        switch (num)
+        if (!GameManager.manager.activate)
         {
-            //5초 후 텍스트 변환
-            case 5:
-                {
-                    processText.SetText("Before dividing the cards, let's decide the betting order.");
-                    break;
-                }
-            //10초 후 텍스트 변환
-            case 10:
-                {
-                    processText.SetText("Touch the arrow!");
-                    break;
-                }
+            switch (num)
+            {
+                //4초 후 텍스트 변환
+                case 4:
+                    {
+                        processText.SetText("Before dividing the cards, let's decide the betting order.");
+                        break;
+                    }
+                //8초 후 텍스트 변환
+                case 8:
+                    {
+                        processText.SetText("Touch the arrow!");
+                        GameManager.manager.activate = true;
+                        break;
+                    }
+            }
         }
         
         //순서가 정해지고 나면 카드를 배분한다는 텍스트로 변환
@@ -74,7 +79,6 @@ public class ProcessTextChange : MonoBehaviour
     {
         processText.SetText("Cards are being distributed...");
         GameManager.manager.canCardDivide = true;
-        Invoke("NextScene", 3);
     }
 
     private void NextScene()

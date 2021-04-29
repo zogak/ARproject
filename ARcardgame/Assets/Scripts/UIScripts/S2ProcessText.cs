@@ -82,9 +82,13 @@ public class S2ProcessText : MonoBehaviour
         }
 
         //player의 베팅 완료
-        else if (!GameManager.manager.activate)
+        else if (GameManager.manager.currentPlayerState == 2 && !GameManager.manager.activate)
         {
             processText.SetText("You bet on " + GameManager.manager.playerBets + " chips.");
+            StartCoroutine(WaitForSecond());
+            time = 0;
+            GameManager.manager.currentPlayerState = 0;
+            GameManager.manager.orderNum = 1;
         }
         
     }
@@ -92,7 +96,6 @@ public class S2ProcessText : MonoBehaviour
     public void ForComText()
     {
         //com의 턴에 활성화
-
         int num = (int)time;
 
         if(num < 3)
@@ -123,8 +126,17 @@ public class S2ProcessText : MonoBehaviour
         
         else if(GameManager.manager.currentComState == 0 && !GameManager.manager.activate)
         {
+            Debug.Log("activate is " + GameManager.manager.activate);
             processText.SetText("Com bet on " + GameManager.manager.comBets + " chips.");
+            StartCoroutine(WaitForSecond());
+            time = 0;
+            GameManager.manager.orderNum = 0;
         }
         
+    }
+
+    IEnumerator WaitForSecond()
+    {
+        yield return new WaitForSeconds(3.0f);
     }
 }

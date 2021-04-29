@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager manager; //다른 script에서 GameManager.manager로 접근하면 변수, 메소드 사용 가능
+    public static GameManager manager; //다른 script에서 GameManager.manager로 접근하면 변수, 메소드 사용 가능 
 
     public int orderNum = 3; //0이면 player 차례인 상태, 1이면 com 차례인 상태
     public bool canCardDivide = false;
@@ -22,10 +22,9 @@ public class GameManager : MonoBehaviour
 
     public GameState currentGameState = GameState.main;
     public int currentComState = 0; //베팅하려는 상태 0, die를 선택할시 1
-    public int currentPlayerState = 0; //0이 디폴트, die 선택할시 1
+    public int currentPlayerState = 0; //0이 디폴트, die 선택할시 1, 현재 acting 중일 시 2
 
-    public Button dieButton;
-    public Button okButton;
+    private Play2UI p2UI;
 
     public enum GameState
     {
@@ -50,7 +49,10 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (activate)
+        {
+            //Debug.Log("activated");
+        }
     }
     public void StartGame()
     {
@@ -80,19 +82,12 @@ public class GameManager : MonoBehaviour
 
     public void PlayerAct()
     {
-        dieButton.interactable = true;
-        okButton.interactable = true;
+        currentPlayerState = 2;
+        p2UI = FindObjectOfType<Canvas>().GetComponent<Play2UI>();
+        p2UI.dieButton.interactable = true;
+        p2UI.okButton.interactable = true;
     }
 
-    public void DieButton()
-    {
-        activate = false;
-    }
-
-    public void OKButton()
-    {
-        activate = false; //행동 끝
-    }
 
     public void ComAI()
     {

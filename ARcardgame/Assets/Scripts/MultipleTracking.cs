@@ -15,6 +15,8 @@ public class MultipleTracking : MonoBehaviour
 
     private Dictionary<string, GameObject> spawnedPrefabs = new Dictionary<string, GameObject>();
 
+    public ProcessTextChange tc;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -26,6 +28,7 @@ public class MultipleTracking : MonoBehaviour
             
             go.name = pr.name;
             spawnedPrefabs.Add(pr.name, go);
+            go.SetActive(false);
         }
     }
 
@@ -72,6 +75,7 @@ public class MultipleTracking : MonoBehaviour
             prefab.transform.position = img.transform.position;
             //prefab.transform.rotation = img.transform.rotation;
             prefab.SetActive(true);
+            tc.SendMessage("NextScene");
 
         }
         else if (img.trackingState == TrackingState.Limited || img.trackingState == TrackingState.None)
