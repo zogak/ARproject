@@ -21,10 +21,12 @@ public class GameManager : MonoBehaviour
     public int playerBets = 0;
 
     public GameState currentGameState = GameState.main;
-    public int currentComState = 0; //베팅하려는 상태 0, die를 선택할시 1
+    public int currentComState = 0; //0이 디폴트, die를 선택할시 1, 현재 acting 중일 시 2
     public int currentPlayerState = 0; //0이 디폴트, die 선택할시 1, 현재 acting 중일 시 2
 
     private Play2UI p2UI;
+
+    public S2ProcessText process;
 
     public enum GameState
     {
@@ -49,6 +51,16 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(currentComState == 1)
+        {
+
+        }
+
+        if(currentPlayerState == 1)
+        {
+
+        }
+
         if (activate)
         {
             //Debug.Log("activated");
@@ -73,6 +85,7 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         SetGameState(GameState.gameOver);
+        activate = false;
     }
 
     void RestartGame()
@@ -92,12 +105,12 @@ public class GameManager : MonoBehaviour
     public void ComAI()
     {
         //일단 AI 구축이 안 되어있지만 UI 출력을 위해 랜덤으로 int를 받아서 베팅할지 다이할지만 선택하게 했습니다.
-        int ran = Random.Range(0, 2); //0이면 베팅, 1이면 다이
-
+        //int ran = Random.Range(0, 2); //0이면 베팅, 1이면 다이
+        int ran = 0;
         switch (ran)
         {
             case 0:
-                currentComState = 0;
+                currentComState = 2;
                 break;
             case 1:
                 currentComState = 1;
@@ -109,7 +122,7 @@ public class GameManager : MonoBehaviour
             return;
         }
         
-        if(currentComState == 0 && orderNum == 0)
+        if(currentComState == 2 && orderNum == 0)
         {
             comBets = 5;//일단 5개
             comChips -= comBets; //베팅한 만큼 가진 칩에서 제거

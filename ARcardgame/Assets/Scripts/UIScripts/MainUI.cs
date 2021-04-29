@@ -16,6 +16,7 @@ public class MainUI : MonoBehaviour
 
     public void NextScene()
     {
+        GameManager.manager.activate = false;
         SceneManager.LoadScene("GamePlay2");
     }
 
