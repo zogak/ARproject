@@ -893,6 +893,49 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &785294600
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 785294602}
+  - component: {fileID: 785294601}
+  m_Layer: 0
+  m_Name: GameProcessor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &785294601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 785294600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7167e1308d81b3046ad9fc20db3060cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &785294602
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 785294600}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1006, y: 549.83215, z: -128.17087}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &849254933
 GameObject:
   m_ObjectHideFlags: 0
@@ -2466,7 +2509,6 @@ MonoBehaviour:
   processText: {fileID: 1370915223}
   p2UI: {fileID: 2049572118}
   time: 0
-  sp: {fileID: 462207683}
 --- !u!114 &2049572118
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2479,6 +2521,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78c24b05a0af25f48b00b580689cdc7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  imageSprites:
+  - {fileID: 21300000, guid: 373be26aa1764ed478940d89c2f2500a, type: 3}
+  - {fileID: 21300000, guid: 431b1f4ed3d014441b50ec56ee087e5d, type: 3}
+  - {fileID: 21300000, guid: 83e1b2f15130e5347b38ebefe2c36a6f, type: 3}
+  - {fileID: 21300000, guid: e452ab5490ddde44585b365062ea7260, type: 3}
+  - {fileID: 21300000, guid: cf7f09fb6f422f74abeffda648beab15, type: 3}
+  - {fileID: 21300000, guid: 6f1517ccc1746f14e9be9d1923d45248, type: 3}
+  - {fileID: 21300000, guid: 02821a07f74d7484494753795441bc8c, type: 3}
+  - {fileID: 21300000, guid: d39b8da8ae35c5540b618df0f857c4b2, type: 3}
+  - {fileID: 21300000, guid: a8b65ce78596c0b4399b6caad45bf4d5, type: 3}
+  - {fileID: 21300000, guid: bc2c7fee0d441b841816aa02588502cc, type: 3}
   dieButton: {fileID: 497178504}
   okButton: {fileID: 1772068525}
   comChips: {fileID: 1224444761}
