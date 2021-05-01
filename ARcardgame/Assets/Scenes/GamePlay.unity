@@ -231,11 +231,14 @@ MonoBehaviour:
   activate: 0
   playerChips: 20
   comChips: 20
-  comBets: 5
+  comBets: 0
   playerBets: 0
   currentGameState: 0
   currentComState: 0
   currentPlayerState: 0
+  comCard: 
+  comCardNum: -1
+  playerCardNum: 0
 --- !u!114 &180628258
 MonoBehaviour:
   m_ObjectHideFlags: 0

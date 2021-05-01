@@ -31,10 +31,19 @@ public class Play2UI : MonoBehaviour
 
     public void OKButton()
     {
-        GameManager.manager.activate = false;
-        okButton.interactable = false;
-        dieButton.interactable = false;
-        process.SendMessage("NextTurn");
+        if(GameManager.manager.activate == true)
+        {
+            GameManager.manager.activate = false;
+            okButton.interactable = false;
+            dieButton.interactable = false;
+            process.SendMessage("NextTurn");
+        }
+        else
+        {
+            okButton.interactable = false;
+            dieButton.interactable = false;
+            process.SendMessage("Finish");
+        }
     }
 
     public void UpdateComText(int update)

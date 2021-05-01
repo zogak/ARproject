@@ -57,12 +57,14 @@ public class S2ProcessText : MonoBehaviour
         if(GameManager.manager.currentComState == 1)
         {
             processText.SetText("Com gave up this game!");
-            GameManager.manager.GameOver();
+            WaitForSecond();
+            Finish();
         }
         else if(GameManager.manager.currentPlayerState == 1)
         {
             processText.SetText("You gave up this game!");
-            GameManager.manager.GameOver();
+            WaitForSecond();
+            Finish();
         }
     }
 
@@ -79,6 +81,25 @@ public class S2ProcessText : MonoBehaviour
             Invoke("invokeSomeTime", 3);
         }
     }
+
+    public void Finish()
+    {
+        
+        if(GameManager.manager.orderNum == 0)
+        {
+            GameManager.manager.playerChips -= GameManager.manager.playerBets;
+            p2UI.UpdatePText(GameManager.manager.playerChips);
+        }
+        else if(GameManager.manager.orderNum == 1)
+        {
+            p2UI.UpdateComText(GameManager.manager.comChips);
+        }
+        
+
+        processText.SetText("Game is finish!");
+        GameManager.manager.GameOver();
+    }
+
 
     void invokeSomeTime()
     {

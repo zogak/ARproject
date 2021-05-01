@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
 
     public static GameManager manager; //다른 script에서 GameManager.manager로 접근하면 변수, 메소드 사용 가능 
 
+
     public int orderNum = 3; //0이면 player 차례인 상태, 1이면 com 차례인 상태
     public bool canCardDivide = false;
 
@@ -19,7 +20,7 @@ public class GameManager : MonoBehaviour
     public int playerChips = 20;
     public int comChips = 20;
 
-    public int comBets = 5;
+    public int comBets = 0;
     public int playerBets = 0;
 
     public GameState currentGameState = GameState.main;
@@ -31,7 +32,7 @@ public class GameManager : MonoBehaviour
     private SpawnObjects spObjects;
 
     public string comCard;
-    public int comCardNum;
+    public int comCardNum = -1;
     public int playerCardNum;
 
     public enum GameState
@@ -77,13 +78,16 @@ public class GameManager : MonoBehaviour
         SetGameState(GameState.inGame); //불러오는 시점에 "게임중" 상태로 만듦
     }
 
-    void SetGameState(GameState state)
+    public void SetGameState(GameState state)
     {
         //게임 상태를 결정하는 메소드, 게임 오버 상황 시 이걸로 state 변경하시면 됩니다!
         if (state == GameState.main) { }
         else if (state == GameState.option) { }
         else if (state == GameState.inGame) { }
-        else if (state == GameState.gameOver) { }
+        else if (state == GameState.gameOver) 
+        {
+            FinalMotion();
+        }
 
         currentGameState = state;
     }
@@ -92,6 +96,11 @@ public class GameManager : MonoBehaviour
     {
         SetGameState(GameState.gameOver);
         activate = false;
+    }
+
+    public void FinalMotion()
+    {
+        spObjects.finalResult();
     }
 
     void RestartGame()
@@ -151,6 +160,14 @@ public class GameManager : MonoBehaviour
         {
             comCardNum = 9;
         }
+
+        playerCardNum = Random.Range(0, 10);
+
+        while (playerCardNum == comCardNum)
+        {
+            playerCardNum = Random.Range(0, 10);
+        }
+
     }
 
     public void PlayerAct()
@@ -158,7 +175,10 @@ public class GameManager : MonoBehaviour
         currentPlayerState = 2;
         p2UI = FindObjectOfType<Canvas>().GetComponent<Play2UI>();
         p2UI.dieButton.interactable = true;
-        p2UI.okButton.interactable = true;
+               
+        //p2UI.okButton.interactable = true;
+        
+        
     }
 
     public void TurnEnds()
@@ -170,6 +190,7 @@ public class GameManager : MonoBehaviour
             currentPlayerState = 0;
             orderNum = 1;
             activate = false;
+            comBets = playerBets;
             playerBets = 0; //각종 값들 초기화
         }
         else if (orderNum == 1 && currentComState == 2)
@@ -180,6 +201,8 @@ public class GameManager : MonoBehaviour
             activate = false;
         }
     }
+
+ 
 
     public void ComAI()
     {
@@ -204,7 +227,16 @@ public class GameManager : MonoBehaviour
 
         }else if(currentComState == 2 && orderNum == 1)
         {
-            comBets = 5;//일단 5개
+            //player의 betting수보다 ranRaise만큼 더 베팅하도록 설정
+            int ranRaise = Random.Range(0, 3);
+            if(comBets >=comChips || comBets+ranRaise >= comChips)
+            {
+                comBets = comChips;
+            }
+            else
+            {
+                comBets += ranRaise;
+            }
             comChips -= comBets; //베팅한 만큼 가진 칩에서 제거
             Debug.Log("comact call");
             spObjects.ComActs();
