@@ -364,6 +364,10 @@ MonoBehaviour:
   board: {fileID: 423381773183136079, guid: 76fce07094412f64bbcb7988b814374d, type: 3}
   playerChip: {fileID: 6072561671439004618, guid: 6196c545f00731c449ed070bbf72215d, type: 3}
   comChip: {fileID: 405909634723295336, guid: 922eaeb803d6d8a4aae936eaf2cf6b8b, type: 3}
+  playerCard: {fileID: 5571261242694599572, guid: 264e9faf4434b0c4b99c880650b37dcf, type: 3}
+  playerText: {fileID: 8624413114298651898, guid: fbda265e16af2a546a1ae3933131207e, type: 3}
+  comCard: {fileID: 5571261242694599572, guid: 18def49b8ec33cb4fa22489649f49a03, type: 3}
+  comText: {fileID: 7890239407209083839, guid: 103c5704c3bc4594298e23eb6a5aeaae, type: 3}
   setBoard: 0
   process: {fileID: 2049572117}
 --- !u!114 &462207684

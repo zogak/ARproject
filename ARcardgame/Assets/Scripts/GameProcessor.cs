@@ -42,9 +42,17 @@ public class GameProcessor : MonoBehaviour
                 s2PText.SendMessage("ForComText");
             }
 
-            if(GameManager.manager.orderNum == 0 && GameManager.manager.activate && GameManager.manager.currentPlayerState == 2)
+            if(GameManager.manager.orderNum == 0 && GameManager.manager.activate && GameManager.manager.currentPlayerState == 2) //player 차례 && player acting
             {
-                if (TryGetTouchPosition(out Vector2 touchPosition))
+                
+                if(GameManager.manager.playerChips < GameManager.manager.comBets && GameManager.manager.playerChips <= GameManager.manager.playerBets) //player의 남은 칩 수가 이전에 com이 베팅한 칩 수보다 작을 때, player가 남은 칩만큼 모두 베팅하였다면
+                {
+                    p2UI = FindObjectOfType<Canvas>().GetComponent<Play2UI>();
+                    p2UI.okButton.interactable = true;
+                    GameManager.manager.activate = false;
+                    return;
+                }
+                else if (TryGetTouchPosition(out Vector2 touchPosition))
                 {
                     if (!IsPointerOverUIObject(touchPosition)){
                         spObjects.PlayerActs(touchPosition);

@@ -1,9 +1,9 @@
 {
-    "m_SelectedDeviceId": "ce091719538fa8590b7e",
+    "m_SelectedDeviceId": "R3CN80A0FDZ",
     "m_SelectedPackage": {
-        "deviceId": "ce091719538fa8590b7e",
+        "deviceId": "R3CN80A0FDZ",
         "name": "com.DefaultCompany.ARcardgame",
-        "processId": 22680,
+        "processId": 21317,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -184,50 +184,254 @@
         },
         {
             "deviceId": "R3CN80A0FDZ",
-            "name": "com.DefaultCompany.ARcardgame",
-            "processId": 2994,
-            "exited": true
-        },
-        {
-            "deviceId": "R3CN80A0FDZ",
-            "name": "com.DefaultCompany.ARcardgame",
-            "processId": 4158,
-            "exited": true
-        },
-        {
-            "deviceId": "R3CN80A0FDZ",
-            "name": "com.DefaultCompany.ARcardgame",
-            "processId": 4755,
-            "exited": true
-        },
-        {
-            "deviceId": "R3CN80A0FDZ",
-            "name": "com.DefaultCompany.ARcardgame",
-            "processId": 12742,
-            "exited": true
-        },
-        {
-            "deviceId": "R3CN80A0FDZ",
-            "name": "com.DefaultCompany.ARcardgame",
-            "processId": 13076,
-            "exited": true
-        },
-        {
-            "deviceId": "R3CN80A0FDZ",
-            "name": "com.DefaultCompany.ARcardgame",
-            "processId": 14808,
+            "name": "com.sec.android.app.launcher",
+            "processId": 11108,
             "exited": false
         },
         {
             "deviceId": "R3CN80A0FDZ",
             "name": "com.DefaultCompany.ARcardgame",
-            "processId": 15192,
+            "processId": 13221,
+            "exited": true
+        },
+        {
+            "deviceId": "R3CN80A0FDZ",
+            "name": "com.DefaultCompany.ARcardgame",
+            "processId": 13976,
+            "exited": true
+        },
+        {
+            "deviceId": "R3CN80A0FDZ",
+            "name": "com.DefaultCompany.ARcardgame",
+            "processId": 14350,
+            "exited": true
+        },
+        {
+            "deviceId": "R3CN80A0FDZ",
+            "name": "com.DefaultCompany.ARcardgame",
+            "processId": 15723,
+            "exited": true
+        },
+        {
+            "deviceId": "R3CN80A0FDZ",
+            "name": "com.DefaultCompany.ARcardgame",
+            "processId": 16501,
+            "exited": true
+        },
+        {
+            "deviceId": "R3CN80A0FDZ",
+            "name": "com.DefaultCompany.ARcardgame",
+            "processId": 19887,
             "exited": false
         },
         {
             "deviceId": "R3CN80A0FDZ",
             "name": "com.DefaultCompany.ARcardgame",
-            "processId": 16614,
+            "processId": 20433,
+            "exited": false
+        },
+        {
+            "deviceId": "R3CN80A0FDZ",
+            "name": "com.DefaultCompany.ARcardgame",
+            "processId": 23602,
+            "exited": false
+        },
+        {
+            "deviceId": "R3CN80A0FDZ",
+            "name": "com.DefaultCompany.ARcardgame",
+            "processId": 24144,
+            "exited": false
+        },
+        {
+            "deviceId": "R3CN80A0FDZ",
+            "name": "com.DefaultCompany.ARcardgame",
+            "processId": 24526,
+            "exited": false
+        },
+        {
+            "deviceId": "R3CN80A0FDZ",
+            "name": "com.DefaultCompany.ARcardgame",
+            "processId": 25331,
+            "exited": false
+        },
+        {
+            "deviceId": "R3CN80A0FDZ",
+            "name": "com.DefaultCompany.ARcardgame",
+            "processId": 27039,
+            "exited": false
+        },
+        {
+            "deviceId": "R3CN80A0FDZ",
+            "name": "com.DefaultCompany.ARcardgame",
+            "processId": 30466,
+            "exited": false
+        },
+        {
+            "deviceId": "R3CN80A0FDZ",
+            "name": "com.DefaultCompany.ARcardgame",
+            "processId": 31803,
+            "exited": false
+        },
+        {
+            "deviceId": "R3CN80A0FDZ",
+            "name": "com.DefaultCompany.ARcardgame",
+            "processId": 3450,
+            "exited": false
+        },
+        {
+            "deviceId": "R3CN80A0FDZ",
+            "name": "com.DefaultCompany.ARcardgame",
+            "processId": 3916,
+            "exited": false
+        },
+        {
+            "deviceId": "R3CN80A0FDZ",
+            "name": "com.DefaultCompany.ARcardgame",
+            "processId": 4253,
+            "exited": false
+        },
+        {
+            "deviceId": "R3CN80A0FDZ",
+            "name": "com.DefaultCompany.ARcardgame",
+            "processId": 6910,
+            "exited": false
+        },
+        {
+            "deviceId": "R3CN80A0FDZ",
+            "name": "com.DefaultCompany.ARcardgame",
+            "processId": 8303,
+            "exited": false
+        },
+        {
+            "deviceId": "R3CN80A0FDZ",
+            "name": "com.DefaultCompany.ARcardgame",
+            "processId": 10117,
+            "exited": false
+        },
+        {
+            "deviceId": "R3CN80A0FDZ",
+            "name": "com.DefaultCompany.ARcardgame",
+            "processId": 10745,
+            "exited": false
+        },
+        {
+            "deviceId": "R3CN80A0FDZ",
+            "name": "com.DefaultCompany.ARcardgame",
+            "processId": 12789,
+            "exited": false
+        },
+        {
+            "deviceId": "R3CN80A0FDZ",
+            "name": "com.DefaultCompany.ARcardgame",
+            "processId": 13051,
+            "exited": false
+        },
+        {
+            "deviceId": "R3CN80A0FDZ",
+            "name": "com.DefaultCompany.ARcardgame",
+            "processId": 13521,
+            "exited": false
+        },
+        {
+            "deviceId": "R3CN80A0FDZ",
+            "name": "com.DefaultCompany.ARcardgame",
+            "processId": 15344,
+            "exited": false
+        },
+        {
+            "deviceId": "R3CN80A0FDZ",
+            "name": "com.DefaultCompany.ARcardgame",
+            "processId": 17568,
+            "exited": false
+        },
+        {
+            "deviceId": "R3CN80A0FDZ",
+            "name": "com.DefaultCompany.ARcardgame",
+            "processId": 17899,
+            "exited": false
+        },
+        {
+            "deviceId": "R3CN80A0FDZ",
+            "name": "com.DefaultCompany.ARcardgame",
+            "processId": 18156,
+            "exited": false
+        },
+        {
+            "deviceId": "R3CN80A0FDZ",
+            "name": "com.DefaultCompany.ARcardgame",
+            "processId": 24185,
+            "exited": false
+        },
+        {
+            "deviceId": "R3CN80A0FDZ",
+            "name": "com.DefaultCompany.ARcardgame",
+            "processId": 28979,
+            "exited": false
+        },
+        {
+            "deviceId": "R3CN80A0FDZ",
+            "name": "com.DefaultCompany.ARcardgame",
+            "processId": 29472,
+            "exited": false
+        },
+        {
+            "deviceId": "R3CN80A0FDZ",
+            "name": "com.DefaultCompany.ARcardgame",
+            "processId": 29876,
+            "exited": false
+        },
+        {
+            "deviceId": "R3CN80A0FDZ",
+            "name": "com.DefaultCompany.ARcardgame",
+            "processId": 31301,
+            "exited": false
+        },
+        {
+            "deviceId": "R3CN80A0FDZ",
+            "name": "com.DefaultCompany.ARcardgame",
+            "processId": 1813,
+            "exited": false
+        },
+        {
+            "deviceId": "R3CN80A0FDZ",
+            "name": "com.DefaultCompany.ARcardgame",
+            "processId": 2133,
+            "exited": false
+        },
+        {
+            "deviceId": "R3CN80A0FDZ",
+            "name": "com.DefaultCompany.ARcardgame",
+            "processId": 16994,
+            "exited": false
+        },
+        {
+            "deviceId": "R3CN80A0FDZ",
+            "name": "com.DefaultCompany.ARcardgame",
+            "processId": 17259,
+            "exited": false
+        },
+        {
+            "deviceId": "R3CN80A0FDZ",
+            "name": "com.DefaultCompany.ARcardgame",
+            "processId": 17601,
+            "exited": false
+        },
+        {
+            "deviceId": "R3CN80A0FDZ",
+            "name": "com.DefaultCompany.ARcardgame",
+            "processId": 20145,
+            "exited": false
+        },
+        {
+            "deviceId": "R3CN80A0FDZ",
+            "name": "com.DefaultCompany.ARcardgame",
+            "processId": 21039,
+            "exited": false
+        },
+        {
+            "deviceId": "R3CN80A0FDZ",
+            "name": "com.DefaultCompany.ARcardgame",
+            "processId": 21317,
             "exited": false
         }
     ],
