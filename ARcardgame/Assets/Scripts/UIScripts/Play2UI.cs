@@ -7,6 +7,9 @@ using TMPro;
 
 public class Play2UI : MonoBehaviour
 {
+    [SerializeField]
+    private Sprite[] imageSprites;
+
     public Button dieButton;
     public Button okButton;
 
@@ -29,7 +32,6 @@ public class Play2UI : MonoBehaviour
     public void OKButton()
     {
         GameManager.manager.activate = false;
-        Debug.Log("activate is " + GameManager.manager.activate);
         okButton.interactable = false;
         dieButton.interactable = false;
         process.SendMessage("NextTurn");
@@ -43,5 +45,10 @@ public class Play2UI : MonoBehaviour
     public void UpdatePText(int update)
     {
         playerChips.SetText("X " + update);
+    }
+
+    public void ComCardImageUpdate(int cardNum)
+    {
+        comCard.sprite = imageSprites[cardNum];
     }
 }

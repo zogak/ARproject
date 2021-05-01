@@ -21,14 +21,10 @@ public class SpawnObjects : MonoBehaviour
     int k = 1;
 
     public S2ProcessText process;
-    //saveValue getTurn;
-    //int turn = 3;
 
     void Start()
     {
         m_RaycastManager = FindObjectOfType<ARRaycastManager>();
-        //getTurn = GameObject.Find("Value").GetComponent<saveValue>();
-        //turn = GameManager.manager.orderNum;
 
     }
 
@@ -47,79 +43,59 @@ public class SpawnObjects : MonoBehaviour
 
         }
 
-        else if(setBoard == 1) //게임판 세팅 이후
-        {
-            if (GameManager.manager.orderNum == 0 && GameManager.manager.activate && GameManager.manager.currentPlayerState == 2) //플레이어 활동
-            //if(GameManager.manager.orderNum == 0)
-            {
-                /*if (TryGetTouchPosition(out Vector2 touchPosition))
-                {
-                    Ray ray = Camera.main.ScreenPointToRay(touchPosition);
-                    RaycastHit hit;
-                    if (Physics.Raycast(ray, out hit, Mathf.Infinity))
-                    {
-                        
-                        if (hit.transform.CompareTag("board"))
-                        {
-                            
-                            Quaternion qRotation = Quaternion.Euler(0f, 0f, 30f);
-                            Instantiate(playerChip, transform.position + Vector3.up * (transform.localScale.y * 10), qRotation);
-                            player_bet++;
-                        }
-                    }
-                    
-                }*/
-                if (TryGetTouchPosition(out Vector2 touchPosition))
-                {
-                    m_RaycastManager.Raycast(touchPosition, hits, TrackableType.Planes);
-                    Ray ray = Camera.main.ScreenPointToRay(touchPosition);
-                    RaycastHit hit;
-                    if (Physics.Raycast(ray, out hit, Mathf.Infinity))
-                    {
-                        if (hit.transform.CompareTag("board"))
-                        {
-                            Quaternion qRotation = Quaternion.Euler(0f, 0f, 30f);
-                            Instantiate(playerChip, hits[0].pose.position + Vector3.up * (transform.localScale.y * 30), qRotation);
-                            GameManager.manager.playerBets++;
-                        }                     
-                    }   
-                }
-            }
-            else if(GameManager.manager.orderNum == 1 && GameManager.manager.activate && GameManager.manager.currentComState == 2) //com 활동
-            {
-                com_bet = GameManager.manager.comBets; //manager에서 컴이 베팅하는 수 가져옴
-
-                StartCoroutine(ComBetting());
-                GameManager.manager.activate = false; //활동 끝
-                if(GameManager.manager.comBets < 3)//베팅 개수에 따라 시간 지연
-                {
-                    Invoke("InvokeText", 2);
-                }else if(GameManager.manager.comBets >= 3 && GameManager.manager.comBets < 5)
-                {
-                    Invoke("InvokeText", 3);
-                }
-                else if (GameManager.manager.comBets >= 5 && GameManager.manager.comBets < 8)
-                {
-                    Invoke("InvokeText", 5);
-                }
-                else if (GameManager.manager.comBets >= 8 && GameManager.manager.comBets < 12)
-                {
-                    Invoke("InvokeText", 8);
-                }
-                else if (GameManager.manager.comBets >= 12 && GameManager.manager.comBets < 15)
-                {
-                    Invoke("InvokeText", 12);
-                }
-                else if (GameManager.manager.comBets >= 15 && GameManager.manager.comBets < 20)
-                {
-                    Invoke("InvokeText", 15);
-                }
-            }
-        }
-
     }
 
-    bool TryGetTouchPosition(out Vector2 touchPosition)
+    public void ComActs()
+    {
+        Debug.Log("comact called");
+        com_bet = GameManager.manager.comBets; //manager에서 컴이 베팅하는 수 가져옴
+
+        StartCoroutine(ComBetting());
+        Debug.Log("coroutine called");
+        GameManager.manager.activate = false; //활동 끝
+        if (GameManager.manager.comBets < 3)//베팅 개수에 따라 시간 지연
+        {
+            Invoke("InvokeText", 2);
+        }
+        else if (GameManager.manager.comBets >= 3 && GameManager.manager.comBets < 5)
+        {
+            Invoke("InvokeText", 3);
+        }
+        else if (GameManager.manager.comBets >= 5 && GameManager.manager.comBets < 8)
+        {
+            Invoke("InvokeText", 5);
+        }
+        else if (GameManager.manager.comBets >= 8 && GameManager.manager.comBets < 12)
+        {
+            Invoke("InvokeText", 8);
+        }
+        else if (GameManager.manager.comBets >= 12 && GameManager.manager.comBets < 15)
+        {
+            Invoke("InvokeText", 12);
+        }
+        else if (GameManager.manager.comBets >= 15 && GameManager.manager.comBets < 20)
+        {
+            Invoke("InvokeText", 15);
+        }
+    }
+
+    public void PlayerActs(Vector2 touchPos)
+    {
+        m_RaycastManager.Raycast(touchPos, hits, TrackableType.Planes);
+        Ray ray = Camera.main.ScreenPointToRay(touchPos);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+        {
+            if (hit.transform.CompareTag("board"))
+            {
+                Quaternion qRotation = Quaternion.Euler(0f, 0f, 30f);
+                Instantiate(playerChip, hits[0].pose.position + Vector3.up * (transform.localScale.y * 30), qRotation);
+                GameManager.manager.playerBets++;
+            }
+        }
+    }
+
+    /*bool TryGetTouchPosition(out Vector2 touchPosition)
     {
         if (Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began && !EventSystem.current.IsPointerOverGameObject(Input.touches[0].fingerId))
         {
@@ -138,7 +114,7 @@ public class SpawnObjects : MonoBehaviour
             touchPosition = default;
             return false;
         }
-    }
+    }*/
 
     public void InvokeText()
     {

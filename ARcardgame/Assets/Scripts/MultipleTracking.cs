@@ -75,6 +75,8 @@ public class MultipleTracking : MonoBehaviour
             prefab.transform.position = img.transform.position;
             //prefab.transform.rotation = img.transform.rotation;
             prefab.SetActive(true);
+            GameManager.manager.comCard = prefab.GetComponent<Renderer>().material.name;
+            Debug.Log(GameManager.manager.comCard);
             tc.SendMessage("NextScene");
 
         }
