@@ -208,8 +208,8 @@ public class GameManager : MonoBehaviour
     {
         spObjects = GameObject.Find("Indicator").GetComponent<SpawnObjects>();
         //일단 AI 구축이 안 되어있지만 UI 출력을 위해 랜덤으로 int를 받아서 베팅할지 다이할지만 선택하게 했습니다.
-        //int ran = Random.Range(0, 2); //0이면 베팅, 1이면 다이
-        int ran = 0;
+        int ran = Random.Range(0, 2); //0이면 베팅, 1이면 다이
+        //int ran = 0;
 
         switch (ran)
         {
@@ -241,6 +241,21 @@ public class GameManager : MonoBehaviour
             Debug.Log("comact call");
             spObjects.ComActs();
         }
-
+        //else if (currentComState == 2 && orderNum == 0)
+        //{
+        //    //player의 betting수보다 ranRaise만큼 더 베팅하도록 설정
+        //    int ranRaise = Random.Range(0, 3);
+        //    if (comBets >= comChips || comBets + ranRaise >= comChips)
+        //    {
+        //        comBets = comChips;
+        //    }
+        //    else
+        //    {
+        //        comBets += ranRaise;
+        //    }
+        //    comChips -= comBets; //베팅한 만큼 가진 칩에서 제거
+        //    Debug.Log("comact call");
+        //    spObjects.ComActs();
+        //}
     }
 }

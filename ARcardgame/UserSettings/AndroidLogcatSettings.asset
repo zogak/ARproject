@@ -1,9 +1,9 @@
 {
-    "m_SelectedDeviceId": "R3CN80A0FDZ",
+    "m_SelectedDeviceId": "2b2854a0fb1c7ece",
     "m_SelectedPackage": {
-        "deviceId": "R3CN80A0FDZ",
+        "deviceId": "2b2854a0fb1c7ece",
         "name": "com.DefaultCompany.ARcardgame",
-        "processId": 21317,
+        "processId": 8496,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -433,6 +433,48 @@
             "name": "com.DefaultCompany.ARcardgame",
             "processId": 21317,
             "exited": false
+        },
+        {
+            "deviceId": "2b2854a0fb1c7ece",
+            "name": "com.sec.android.app.launcher",
+            "processId": 11573,
+            "exited": false
+        },
+        {
+            "deviceId": "2b2854a0fb1c7ece",
+            "name": "com.DefaultCompany.ARcardgame",
+            "processId": 981,
+            "exited": true
+        },
+        {
+            "deviceId": "2b2854a0fb1c7ece",
+            "name": "com.DefaultCompany.ARcardgame",
+            "processId": 4640,
+            "exited": true
+        },
+        {
+            "deviceId": "2b2854a0fb1c7ece",
+            "name": "com.DefaultCompany.ARcardgame",
+            "processId": 6264,
+            "exited": true
+        },
+        {
+            "deviceId": "2b2854a0fb1c7ece",
+            "name": "com.DefaultCompany.ARcardgame",
+            "processId": 8188,
+            "exited": true
+        },
+        {
+            "deviceId": "2b2854a0fb1c7ece",
+            "name": "com.DefaultCompany.ARcardgame",
+            "processId": 8277,
+            "exited": true
+        },
+        {
+            "deviceId": "2b2854a0fb1c7ece",
+            "name": "com.DefaultCompany.ARcardgame",
+            "processId": 8496,
+            "exited": false
         }
     ],
     "m_Tags": {
@@ -443,7 +485,7 @@
             },
             {
                 "m_Name": "No Filter",
-                "m_Selected": true
+                "m_Selected": false
             },
             {
                 "m_Name": "",
@@ -459,7 +501,7 @@
             },
             {
                 "m_Name": "Unity",
-                "m_Selected": false
+                "m_Selected": true
             },
             {
                 "m_Name": "CRASH",
