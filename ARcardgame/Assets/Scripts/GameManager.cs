@@ -168,13 +168,16 @@ public class GameManager : MonoBehaviour
             playerCardNum = Random.Range(0, 10);
         }
 
+        p2UI = FindObjectOfType<Canvas>().GetComponent<Play2UI>();
+        p2UI.dieButton.interactable = true;
+
     }
 
     public void PlayerAct()
     {
         currentPlayerState = 2;
-        p2UI = FindObjectOfType<Canvas>().GetComponent<Play2UI>();
-        p2UI.dieButton.interactable = true;
+        //p2UI = FindObjectOfType<Canvas>().GetComponent<Play2UI>();
+        //p2UI.dieButton.interactable = true;
                
         //p2UI.okButton.interactable = true;
         
@@ -195,7 +198,7 @@ public class GameManager : MonoBehaviour
         }
         else if (orderNum == 1 && currentComState == 2)
         {
-            p2UI.UpdateComText(comChips);
+            p2UI.UpdateComText(comChips); //null exception
             currentComState = 0;
             orderNum = 0;
             activate = false;
@@ -208,6 +211,7 @@ public class GameManager : MonoBehaviour
     {
         spObjects = GameObject.Find("Indicator").GetComponent<SpawnObjects>();
         //일단 AI 구축이 안 되어있지만 UI 출력을 위해 랜덤으로 int를 받아서 베팅할지 다이할지만 선택하게 했습니다.
+
         //int ran = Random.Range(0, 2); //0이면 베팅, 1이면 다이
         int ran = 0;
 
@@ -241,6 +245,6 @@ public class GameManager : MonoBehaviour
             Debug.Log("comact call");
             spObjects.ComActs();
         }
-
+        
     }
 }
