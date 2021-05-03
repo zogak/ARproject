@@ -23,7 +23,6 @@ public class GameProcessor : MonoBehaviour
     private void Start()
     {
         GameManager.manager.SendMessage("makeCardNameToInteger");
-        GameManager.manager.SendMessage("DividePlayerCard");
         p2UI.ComCardImageUpdate(GameManager.manager.comCardNum);
         //Debug.Log(GameManager.manager.comCardNum);
         //Debug.Log(GameManager.manager.playerCardNum);

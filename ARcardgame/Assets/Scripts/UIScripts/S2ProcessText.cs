@@ -57,14 +57,12 @@ public class S2ProcessText : MonoBehaviour
         if(GameManager.manager.currentComState == 1)
         {
             processText.SetText("Com gave up this game!");
-            WaitForSecond();
-            Finish();
+            Invoke("Finish", 3);
         }
         else if(GameManager.manager.currentPlayerState == 1)
         {
             processText.SetText("You gave up this game!");
-            WaitForSecond();
-            Finish();
+            Invoke("Finish", 3);
         }
     }
 

@@ -107,16 +107,6 @@ public class GameManager : MonoBehaviour
     {
 
     }
-    void DividePlayerCard()
-    {
-        while (true)
-        {
-            playerCardNum = Random.Range(0, 10);
-
-            if (playerCardNum != comCardNum)
-                break;
-        }
-    }
 
     void makeCardNameToInteger()
     {
@@ -167,6 +157,7 @@ public class GameManager : MonoBehaviour
         {
             playerCardNum = Random.Range(0, 10);
         }
+        Debug.Log(playerCardNum);
 
     }
 
