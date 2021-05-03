@@ -77,7 +77,7 @@ public class ProcessTextChange : MonoBehaviour
     //카드가 배분되고 나면 다음 단계를 위해 버튼을 눌러달라는 텍스트로 변환
     private void DividingText()
     {
-        processText.SetText("Cards are being distributed...");
+        processText.SetText("Cards are being distributed... Put the camera on the marker");
         GameManager.manager.canCardDivide = true;
     }
 

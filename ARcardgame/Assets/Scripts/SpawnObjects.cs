@@ -131,7 +131,9 @@ public class SpawnObjects : MonoBehaviour
                 Quaternion qRotation = Quaternion.Euler(0f, 0f, 30f);
                 Instantiate(playerChip, hits[0].pose.position + Vector3.up * (transform.localScale.y * 30), qRotation);
                 GameManager.manager.playerBets++;
-                if(GameManager.manager.playerBets >= GameManager.manager.comBets && GameManager.manager.playerChips>0)
+                //GameManager.manager.playerChips -= GameManager.manager.playerBets;
+
+                if (GameManager.manager.playerBets >= GameManager.manager.comBets && GameManager.manager.playerChips>0)
                 {
                     p2UI = FindObjectOfType<Canvas>().GetComponent<Play2UI>();
                     p2UI.okButton.interactable = true;
@@ -198,9 +200,11 @@ public class SpawnObjects : MonoBehaviour
         float posPlayerCard = -0.1f;
         float posComCard = 0.1f;
         Quaternion qRotation = Quaternion.Euler(90f, 0f, 0f);
-        Instantiate(playerCard, spawned.transform.position + Vector3.up * (transform.localScale.y * 20) + Vector3.right * posPlayerCard, qRotation);
-        Instantiate(comCard, spawned.transform.position + Vector3.up * (transform.localScale.y * 20) + Vector3.right * posComCard, qRotation);
-        Instantiate(playerText, spawned.transform.position + Vector3.up * (transform.localScale.y * 23) + Vector3.right * posPlayerCard, transform.rotation);
-        Instantiate(comText, spawned.transform.position + Vector3.up * (transform.localScale.y * 23) + Vector3.right * posComCard, transform.rotation);
+        Instantiate(playerCard, spawned.transform.position + Vector3.up * (transform.localScale.y * 30) + Vector3.right * posPlayerCard, qRotation);
+        Instantiate(comCard, spawned.transform.position + Vector3.up * (transform.localScale.y * 30) + Vector3.right * posComCard, qRotation);
+        Instantiate(playerText, spawned.transform.position + Vector3.up * (transform.localScale.y * 33) + Vector3.right * posPlayerCard, transform.rotation);
+        Instantiate(comText, spawned.transform.position + Vector3.up * (transform.localScale.y * 33) + Vector3.right * posComCard, transform.rotation);
+
+        
     }
 }
