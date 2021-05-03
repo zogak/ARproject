@@ -35,6 +35,10 @@ public class GameManager : MonoBehaviour
     public int comCardNum = -1;
     public int playerCardNum;
 
+    public int howManyComTurn = 0;
+    public int howManyPlayerTurn = 0;
+    public int totalTurns = 0;
+
     public enum GameState
     {
         //게임 상태 enum, 필요한 상태가 더 있으면 추가해주세요.
@@ -186,7 +190,7 @@ public class GameManager : MonoBehaviour
 
     public void TurnEnds()
     {
-        if (orderNum == 0 && currentPlayerState == 2)
+        if (orderNum == 0 && currentPlayerState == 2) //player차례, 게임진행중
         {
             playerChips -= playerBets;
             p2UI.UpdatePText(playerChips);
@@ -195,12 +199,14 @@ public class GameManager : MonoBehaviour
             activate = false;
             comBets = playerBets;
             playerBets = 0; //각종 값들 초기화
+            howManyPlayerTurn++; //playerTurn이 몇번째인지
         }
-        else if (orderNum == 1 && currentComState == 2)
+        else if (orderNum == 1 && currentComState == 2) //computer차례, 게임진행중
         {
             p2UI.UpdateComText(comChips); //null exception
             currentComState = 0;
             orderNum = 0;
+            howManyComTurn++; // comTurn이 몇번째인지
             activate = false;
         }
     }
@@ -225,25 +231,69 @@ public class GameManager : MonoBehaviour
                 break;
         }
 
-        if(currentComState == 1)
+        if (currentComState == 1)
         {
             return;
 
-        }else if(currentComState == 2 && orderNum == 1)
+        }
+        
+        else if(currentComState == 2 && orderNum == 1)
         {
-            //player의 betting수보다 ranRaise만큼 더 베팅하도록 설정
-            int ranRaise = Random.Range(0, 3);
-            if(comBets >=comChips || comBets+ranRaise >= comChips)
+            if(howManyComTurn == 0 && howManyPlayerTurn == 0) //com이 선일때 처음 베팅하는 것이면
             {
-                comBets = comChips;
+                if (comCardNum == 9 || comCardNum == 8) //computer가 다이아몬드10 또는 9인 경우
+                {
+                    comBets = Random.Range(4, 8);
+                }
+                else if(comCardNum == 7 || comCardNum == 6)
+                {
+                    comBets = Random.Range(3, 7);
+                }
+                else if(comCardNum == 5 || comCardNum == 4)
+                {
+                    comBets = Random.Range(2, 4);
+                }
+                else if(comCardNum==3 || comCardNum == 2)
+                {
+                    comBets = Random.Range(1, 3);
+                }
+                else if (comCardNum == 0) //com이 다이아몬드1 인경우(무조건 lose)
+                {
+                    //베팅 조금할 것
+                    comBets = Random.Range(0, 3);
+                 
+                }
+                comChips -= comBets; //베팅한 만큼 가진 칩에서 제거
+                Debug.Log("comact call");
+                spObjects.ComActs();
             }
+
             else
             {
-                comBets += ranRaise;
+                //player의 betting수보다 ranRaise만큼 더 베팅하도록 설정
+                int ranRaise = Random.Range(0, 3);
+                if (comBets >= comChips || comBets + ranRaise >= comChips) //올인?
+                {
+                    comBets = comChips;
+                }
+                else //평소 경우
+                {
+                    comBets += ranRaise;
+
+                    if(comCardNum == 0 || comCardNum == 1 || comCardNum == 2)
+                    {
+                        //일찍 die하는 것이 com에게 유리
+                        int whenDie = Random.Range(1, 3); //베팅이 1번또는2번 왔다갔다 했을 때 com이 die함 
+                        if (howManyComTurn == whenDie)
+                        {
+                            currentComState = 1; //die해
+                        }
+                    }
+                }
+                comChips -= comBets; //베팅한 만큼 가진 칩에서 제거
+                Debug.Log("comact call");
+                spObjects.ComActs();
             }
-            comChips -= comBets; //베팅한 만큼 가진 칩에서 제거
-            Debug.Log("comact call");
-            spObjects.ComActs();
         }
         
     }
