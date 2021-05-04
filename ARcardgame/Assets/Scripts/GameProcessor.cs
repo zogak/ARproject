@@ -46,13 +46,19 @@ public class GameProcessor : MonoBehaviour
 
                 if (GameManager.manager.orderNum == 0 && GameManager.manager.activate && GameManager.manager.currentPlayerState == 2) //player Â÷·Ê && player acting
                 {
-
-                    if (TryGetTouchPosition(out Vector2 touchPosition))
+                    if(GameManager.manager.playerChips > GameManager.manager.playerBets)
                     {
-                        if (!IsPointerOverUIObject(touchPosition))
+                        if (TryGetTouchPosition(out Vector2 touchPosition))
                         {
-                            spObjects.PlayerActs(touchPosition);
+                            if (!IsPointerOverUIObject(touchPosition))
+                            {
+                                spObjects.PlayerActs(touchPosition);
+                            }
                         }
+                    }
+                    else
+                    {
+
                     }
                 }
             }

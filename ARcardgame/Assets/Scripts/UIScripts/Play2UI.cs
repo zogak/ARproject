@@ -13,7 +13,7 @@ public class Play2UI : MonoBehaviour
     public Button dieButton;
     public Button okButton;
     public Button continueB;
-    public Button quitB;
+    public Button backB;
 
     public TextMeshProUGUI comChips;
     public TextMeshProUGUI playerChips;
@@ -72,7 +72,7 @@ public class Play2UI : MonoBehaviour
 
     }
 
-    public void quitButton()
+    public void backButton()
     {
 
     }
@@ -93,7 +93,7 @@ public class Play2UI : MonoBehaviour
             win = "Player";
         }
 
-        chipResult.SetText(win + " got" + GameManager.manager.totalBets + " chips\n" + "Chips left for you: " + GameManager.manager.playerChips + "\nChips left for Com: " + GameManager.manager.comChips);
+        chipResult.SetText(win + " got " + GameManager.manager.totalBets + " chips\n" + "Chips left for you: " + GameManager.manager.playerChips + "\nChips left for Com: " + GameManager.manager.comChips);
 
         if(GameManager.manager.playerChips == 0 || GameManager.manager.comChips == 0)
         {
