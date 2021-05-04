@@ -25,6 +25,7 @@ public class SpawnObjects : MonoBehaviour
     int k = 1;
     private Play2UI p2UI;
 
+
     public S2ProcessText process;
 
     void Start()
@@ -215,9 +216,9 @@ public class SpawnObjects : MonoBehaviour
     {
         float posPlayerCard = -0.1f;
         float posComCard = 0.1f;
-        Quaternion qRotation = Quaternion.Euler(90f, 0f, 0f);
-        Instantiate(playerCard, spawned.transform.position + Vector3.up * (transform.localScale.y * 30) + Vector3.right * posPlayerCard, qRotation);
-        Instantiate(comCard, spawned.transform.position + Vector3.up * (transform.localScale.y * 30) + Vector3.right * posComCard, qRotation);
+       
+        Instantiate(playerCard, spawned.transform.position + Vector3.up * (transform.localScale.y * 20) + Vector3.right * posPlayerCard, transform.rotation);
+        Instantiate(comCard, spawned.transform.position + Vector3.up * (transform.localScale.y * 20) + Vector3.right * posComCard, transform.rotation);
         Instantiate(playerText, spawned.transform.position + Vector3.up * (transform.localScale.y * 33) + Vector3.right * posPlayerCard, transform.rotation);
         Instantiate(comText, spawned.transform.position + Vector3.up * (transform.localScale.y * 33) + Vector3.right * posComCard, transform.rotation);
 

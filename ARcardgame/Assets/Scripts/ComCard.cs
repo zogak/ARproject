@@ -9,11 +9,23 @@ public class ComCard: MonoBehaviour
     [SerializeField]
     private Renderer renderer;
 
+    public Camera target;
+
     // Start is called before the first frame update
     void Start()
     {
         renderer = GetComponent<Renderer>();
         ChangeMaterial();
+    }
+
+    void Update()
+    {
+        Vector3 v = target.transform.position - transform.position;
+        v.Normalize();
+        Quaternion q = Quaternion.LookRotation(v);
+        Quaternion qRotation = Quaternion.Euler(270f, 0f, 0f);
+        transform.rotation = q * qRotation;
+        
     }
 
     public void ChangeMaterial()
