@@ -205,6 +205,11 @@ public class SpawnObjects : MonoBehaviour
         Instantiate(playerText, spawned.transform.position + Vector3.up * (transform.localScale.y * 33) + Vector3.right * posPlayerCard, transform.rotation);
         Instantiate(comText, spawned.transform.position + Vector3.up * (transform.localScale.y * 33) + Vector3.right * posComCard, transform.rotation);
 
-        
+        Invoke("invokeResult", 3);
+    }
+
+    void invokeResult()
+    {
+        p2UI.ResultUI();
     }
 }

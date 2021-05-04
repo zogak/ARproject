@@ -12,11 +12,17 @@ public class Play2UI : MonoBehaviour
 
     public Button dieButton;
     public Button okButton;
+    public Button continueB;
+    public Button quitB;
 
     public TextMeshProUGUI comChips;
     public TextMeshProUGUI playerChips;
 
     public Image comCard;
+
+    public GameObject resultPanel;
+    public TextMeshProUGUI whoWin;
+    public TextMeshProUGUI chipResult;
 
     public S2ProcessText process;
 
@@ -60,4 +66,39 @@ public class Play2UI : MonoBehaviour
     {
         comCard.sprite = imageSprites[cardNum];
     }
+
+    public void continueButton()
+    {
+
+    }
+
+    public void quitButton()
+    {
+
+    }
+
+    public void ResultUI()
+    {
+        string win = " ";
+        resultPanel.SetActive(true);
+        if (GameManager.manager.comCardNum > GameManager.manager.playerCardNum)
+        {
+            //whoWin.GetComponent<TextMeshPro>().renderer.material.color = Color.red;
+            whoWin.SetText("Com Wins!");
+            win = "Com";
+        }
+        else
+        {
+            whoWin.SetText("You Win!");
+            win = "Player";
+        }
+
+        chipResult.SetText(win + " got" + GameManager.manager.totalBets + " chips\n" + "Chips left for you: " + GameManager.manager.playerChips + "\nChips left for Com: " + GameManager.manager.comChips);
+
+        if(GameManager.manager.playerChips == 0 || GameManager.manager.comChips == 0)
+        {
+            continueB.interactable = false;
+        }
+    }
+    
 }

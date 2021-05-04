@@ -57,14 +57,12 @@ public class S2ProcessText : MonoBehaviour
         if(GameManager.manager.currentComState == 1)
         {
             processText.SetText("Com gave up this game!");
-            WaitForSecond();
-            Finish();
+            Invoke("Finish", 3);
         }
         else if(GameManager.manager.currentPlayerState == 1)
         {
             processText.SetText("You gave up this game!");
-            WaitForSecond();
-            Finish();
+            Invoke("Finish", 3);
         }
     }
 
@@ -73,41 +71,35 @@ public class S2ProcessText : MonoBehaviour
         if (GameManager.manager.orderNum == 0 && GameManager.manager.currentPlayerState == 2)
         {
             processText.SetText("You bet on " + GameManager.manager.playerBets + " chips.");
-            Invoke("invokeSomeTime", 3);
+            Invoke("invokeTurnEnds", 3);
         }
         else if (GameManager.manager.orderNum == 1 && GameManager.manager.currentComState == 2)
         {
             processText.SetText("Com bet on " + GameManager.manager.comBets + " chips.");
-            Invoke("invokeSomeTime", 3);
+            Invoke("invokeTurnEnds", 3);
         }
     }
 
     public void Finish()
     {
-        
-        if(GameManager.manager.orderNum == 0)
+
+        if (GameManager.manager.orderNum == 0)
         {
             GameManager.manager.playerChips -= GameManager.manager.playerBets;
             p2UI.UpdatePText(GameManager.manager.playerChips);
         }
-        else if(GameManager.manager.orderNum == 1)
+        else if (GameManager.manager.orderNum == 1)
         {
             p2UI.UpdateComText(GameManager.manager.comChips);
         }
-        
 
         processText.SetText("Game is finish!");
         GameManager.manager.GameOver();
     }
 
 
-    void invokeSomeTime()
+    void invokeTurnEnds()
     {
         GameManager.manager.TurnEnds();
-    }
-
-    IEnumerator WaitForSecond()
-    {
-        yield return new WaitForSeconds(3.0f);
     }
 }

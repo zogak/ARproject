@@ -17,13 +17,12 @@ public class GameProcessor : MonoBehaviour
     void Awake()
     {
         s2PText = FindObjectOfType<S2ProcessText>();
-        p2UI = FindObjectOfType<Play2UI>();
+        p2UI = FindObjectOfType<Canvas>().GetComponent<Play2UI>();
         spObjects = FindObjectOfType<SpawnObjects>();
     }
     private void Start()
     {
-        GameManager.manager.SendMessage("makeCardNameToInteger");
-        GameManager.manager.SendMessage("DividePlayerCard");
+        GameManager.manager.SendMessage("gameSetting");
         p2UI.ComCardImageUpdate(GameManager.manager.comCardNum);
         //Debug.Log(GameManager.manager.comCardNum);
         //Debug.Log(GameManager.manager.playerCardNum);
@@ -31,37 +30,38 @@ public class GameProcessor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //processText 작동시키기
-        if(spObjects.setBoard == 1)
+        if(GameManager.manager.GetGameState() == GameManager.GameState.inGame)
         {
-            if(GameManager.manager.orderNum == 0 && !GameManager.manager.activate && GameManager.manager.currentPlayerState == 0)
+            //현재 inGame인 상태일 때만 processText 작동시키기
+            if (spObjects.setBoard == 1)
             {
-                s2PText.SendMessage("ForPlayerText");
-            }else if(GameManager.manager.orderNum == 1 && !GameManager.manager.activate && GameManager.manager.currentComState == 0)
-            {
-                s2PText.SendMessage("ForComText");
-            }
-
-            if(GameManager.manager.orderNum == 0 && GameManager.manager.activate && GameManager.manager.currentPlayerState == 2) //player 차례 && player acting
-            {
-                
-                if(GameManager.manager.playerChips < GameManager.manager.comBets && GameManager.manager.playerChips <= GameManager.manager.playerBets) //player의 남은 칩 수가 이전에 com이 베팅한 칩 수보다 작을 때, player가 남은 칩만큼 모두 베팅하였다면
+                if (GameManager.manager.orderNum == 0 && !GameManager.manager.activate && GameManager.manager.currentPlayerState == 0)
                 {
-                    p2UI = FindObjectOfType<Canvas>().GetComponent<Play2UI>();
-                    p2UI.okButton.interactable = true;
-                    GameManager.manager.activate = false;
-                    return;
+                    s2PText.SendMessage("ForPlayerText");
                 }
-                else if (TryGetTouchPosition(out Vector2 touchPosition))
+                else if (GameManager.manager.orderNum == 1 && !GameManager.manager.activate && GameManager.manager.currentComState == 0)
                 {
-                    if (!IsPointerOverUIObject(touchPosition)){
-                        spObjects.PlayerActs(touchPosition);
-                    }
-                }            
-            }
+                    s2PText.SendMessage("ForComText");
+                }
 
+                if (GameManager.manager.orderNum == 0 && GameManager.manager.activate && GameManager.manager.currentPlayerState == 2) //player 차례 && player acting
+                {
+
+                    if (TryGetTouchPosition(out Vector2 touchPosition))
+                    {
+                        if (!IsPointerOverUIObject(touchPosition))
+                        {
+                            spObjects.PlayerActs(touchPosition);
+                        }
+                    }
+                }
+            }
+        }else if(GameManager.manager.GetGameState() == GameManager.GameState.gameOver)
+        {
 
         }
+        
+        
     }
 
     private void LateUpdate()
@@ -95,8 +95,7 @@ public class GameProcessor : MonoBehaviour
 
         List<RaycastResult> results = new List<RaycastResult>();
 
-        EventSystem.current
-        .RaycastAll(eventDataCurrentPosition, results);
+        EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
 
         return results.Count > 0;
     }
