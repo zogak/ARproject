@@ -8,6 +8,7 @@ TagManager:
   - board
   - Value
   - Chip
+  - Card
   layers:
   - Default
   - TransparentFX

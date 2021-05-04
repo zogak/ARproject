@@ -82,11 +82,18 @@ public class SpawnObjects : MonoBehaviour
             {
                 Invoke("InvokeFin", 12);
             }
-            else if (GameManager.manager.comBets >= 15 && GameManager.manager.comBets < 20)
+            else if (GameManager.manager.comBets >= 15 && GameManager.manager.comBets < 24)
             {
                 Invoke("InvokeFin", 15);
+            }else if(GameManager.manager.comBets >= 24 && GameManager.manager.comBets < 36)
+            {
+                Invoke("InvokeFin", 20);
             }
-            
+            else if (GameManager.manager.comBets >= 36 && GameManager.manager.comBets < 41)
+            {
+                Invoke("InvokeFin", 25);
+            }
+
         }
         else
         {
@@ -110,9 +117,17 @@ public class SpawnObjects : MonoBehaviour
             {
                 Invoke("InvokeText", 12);
             }
-            else if (GameManager.manager.comBets >= 15 && GameManager.manager.comBets < 20)
+            else if (GameManager.manager.comBets >= 15 && GameManager.manager.comBets < 24)
             {
                 Invoke("InvokeText", 15);
+            }
+            else if (GameManager.manager.comBets >= 24 && GameManager.manager.comBets < 36)
+            {
+                Invoke("InvokeText", 20);
+            }
+            else if (GameManager.manager.comBets >= 36 && GameManager.manager.comBets < 41)
+            {
+                Invoke("InvokeText", 25);
             }
         }
         
@@ -131,9 +146,10 @@ public class SpawnObjects : MonoBehaviour
                 Quaternion qRotation = Quaternion.Euler(0f, 0f, 30f);
                 Instantiate(playerChip, hits[0].pose.position + Vector3.up * (transform.localScale.y * 30), qRotation);
                 GameManager.manager.playerBets++;
+                Debug.Log("player bet " + GameManager.manager.playerBets);
                 //GameManager.manager.playerChips -= GameManager.manager.playerBets;
 
-                if (GameManager.manager.playerBets >= GameManager.manager.comBets && GameManager.manager.playerChips>0)
+                if (GameManager.manager.playerBets >= GameManager.manager.comAdds)
                 {
                     p2UI = FindObjectOfType<Canvas>().GetComponent<Play2UI>();
                     p2UI.okButton.interactable = true;

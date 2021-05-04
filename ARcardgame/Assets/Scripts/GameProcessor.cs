@@ -13,19 +13,33 @@ public class GameProcessor : MonoBehaviour
     private Play2UI p2UI;
     private SpawnObjects spObjects;
 
+    public int saveComChips;
+    public int savePlayerChips;
+
+    private RoundSavor save;
     
     void Awake()
     {
         s2PText = FindObjectOfType<S2ProcessText>();
         p2UI = FindObjectOfType<Canvas>().GetComponent<Play2UI>();
         spObjects = FindObjectOfType<SpawnObjects>();
+        save = FindObjectOfType<RoundSavor>();
     }
     private void Start()
     {
         GameManager.manager.SendMessage("gameSetting");
         p2UI.ComCardImageUpdate(GameManager.manager.comCardNum);
-        //Debug.Log(GameManager.manager.comCardNum);
-        //Debug.Log(GameManager.manager.playerCardNum);
+
+        if(save.savePlayerChips != 0 && save.saveComChips != 0)
+        {
+            GameManager.manager.comChips = save.saveComChips;
+            GameManager.manager.playerChips = save.savePlayerChips;
+            p2UI.UpdateComText(GameManager.manager.comChips);
+            p2UI.UpdatePText(GameManager.manager.playerChips);
+        }
+        
+        Debug.Log(GameManager.manager.comChips);
+        Debug.Log(GameManager.manager.playerChips);
     }
     // Update is called once per frame
     void Update()

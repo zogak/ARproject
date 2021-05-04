@@ -37,7 +37,7 @@ public class ProcessTextChange : MonoBehaviour
                 //4초 후 텍스트 변환
                 case 4:
                     {
-                        processText.SetText("Before dividing the cards, let's decide the betting order.");
+                        processText.SetText("Before dividing the cards,\nlet's decide the betting order.");
                         break;
                     }
                 //8초 후 텍스트 변환
@@ -77,7 +77,7 @@ public class ProcessTextChange : MonoBehaviour
     //카드가 배분되고 나면 다음 단계를 위해 버튼을 눌러달라는 텍스트로 변환
     private void DividingText()
     {
-        processText.SetText("Cards are being distributed... Put the camera on the marker");
+        processText.SetText("Cards are being distributed...\nPut the camera on the marker");
         GameManager.manager.canCardDivide = true;
     }
 

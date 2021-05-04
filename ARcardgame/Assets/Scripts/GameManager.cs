@@ -23,7 +23,10 @@ public class GameManager : MonoBehaviour
     public int comBets = 0;
     public int playerBets = 0;
     public int totalBets = 0;
-    private int lastPlayerBets = 0; //게임의 종료 여부 확인을 위해 직전에 베팅한 수를 기억하고 있어야함
+    public int lastPlayerBets = 0; //게임의 종료 여부 확인을 위해 직전에 베팅한 수를 기억하고 있어야함
+    public int lastComBets = 0;
+    public int playerAdds = 0;
+    public int comAdds = 0;
 
     public GameState currentGameState = GameState.main;
 
@@ -44,7 +47,7 @@ public class GameManager : MonoBehaviour
     
 
     private int whenDie = -1; //comAI에서 Die 타이밍을 잡기 위한 변수
-    private int comsFlow = 1; //이번 라운드의 컴 AI의 베팅 경향 정하기 - 세게 나감 : 0 , 중립 : 1, 소심하게 : 2 
+    private int comsFlow = -1; //이번 라운드의 컴 AI의 베팅 경향 정하기 - 세게 나감 : 0 , 중립 : 1, 소심하게 : 2 
     private int checkCase = -1; //comAI에서만 쓰는 변수, case를 나누기 더 쉽게 만들어놓은 것입니다.
 
     public enum GameState
@@ -58,12 +61,24 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        manager = this; 
+        manager = this;
+
     }
 
     private void Start()
     {
         Debug.Log("manager starts");
+        /*if (FindObjectOfType<GameProcessor>())
+        {
+            GameProcessor lastProcessor = FindObjectOfType<GameProcessor>();
+            comChips = lastProcessor.saveComChips;
+            playerChips = lastProcessor.savePlayerChips;
+
+            Debug.Log(lastProcessor.saveComChips);
+            Debug.Log(lastProcessor.savePlayerChips);
+
+            Destroy(lastProcessor);
+        }*/
         StartGame();
     }
 
@@ -88,6 +103,39 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         SetGameState(GameState.inGame); //불러오는 시점에 "게임중" 상태로 만듦
+
+    }
+
+    public void makeDefault()
+    {
+        orderNum = 3; 
+        canCardDivide = false;
+
+        activate = false; 
+
+        comBets = 0;
+        playerBets = 0;
+        totalBets = 0;
+        lastPlayerBets = 0; 
+        lastComBets = 0;
+        playerAdds = 0;
+        comAdds = 0;
+
+        currentGameState = GameState.main;
+
+        currentComState = 0; 
+        currentPlayerState = 0; 
+
+        comCardNum = -1;
+
+        howManyComTurn = 0;
+        howManyPlayerTurn = 0;
+        totalTurns = 0;
+
+
+        whenDie = -1; 
+        comsFlow = -1; 
+        checkCase = -1;
     }
 
     public void SetGameState(GameState state)
@@ -123,16 +171,6 @@ public class GameManager : MonoBehaviour
     void RestartGame()
     {
 
-    }
-    void DividePlayerCard()
-    {
-        while (true)
-        {
-            playerCardNum = Random.Range(0, 10);
-
-            if (playerCardNum != comCardNum)
-                break;
-        }
     }
 
     void gameSetting()
@@ -206,6 +244,9 @@ public class GameManager : MonoBehaviour
         //comsFlow = flow;
         Debug.Log("comsFlow: " + comsFlow);
 
+        p2UI.UpdateComText(comChips);
+        p2UI.UpdatePText(playerChips);
+
     }
 
     public void PlayerAct()
@@ -222,9 +263,14 @@ public class GameManager : MonoBehaviour
     {
         if (orderNum == 0 && currentPlayerState == 2) //player차례, 게임진행중
         {
+            totalBets += playerBets;
+            //lastPlayerBets = playerBets;
+            playerAdds = playerBets - comAdds;
+            playerChips -= playerBets;
+            Debug.Log("player add " + playerAdds);
+
             if (wasItCall())
             {
-                totalBets += playerBets;
                 activate = false;
                 p2UI.dieButton.interactable = false;
                 p2UI.okButton.interactable = false;
@@ -232,24 +278,23 @@ public class GameManager : MonoBehaviour
             }
             else
             {
-                totalBets += playerBets;
-                playerChips -= playerBets;
                 p2UI.UpdatePText(playerChips);
                 currentPlayerState = 0;
                 orderNum = 1;
                 activate = false;
-                lastPlayerBets = playerBets;
-                comBets = playerBets;
                 playerBets = 0; //각종 값들 초기화
-                                //howManyPlayerTurn++; //playerTurn이 몇번째인지 -> PlayerAct로 옮김
             }
 
         }
         else if (orderNum == 1 && currentComState == 2) //computer차례, 게임진행중
         {
+            totalBets += comBets;
+            //lastComBets = comBets;
+            comAdds = comBets - playerAdds;
+            Debug.Log("com add " + comAdds);
+
             if (wasItCall())
             {
-                totalBets += comBets;
                 activate = false;
                 p2UI.dieButton.interactable = false;
                 p2UI.okButton.interactable = false;
@@ -257,12 +302,11 @@ public class GameManager : MonoBehaviour
             }
             else
             {
-                totalBets += comBets;
                 p2UI.UpdateComText(comChips); //null exception
                 currentComState = 0;
                 orderNum = 0;
-                //howManyComTurn++; // comTurn이 몇번째인지 ->comAI로 옮김
                 activate = false;
+                comBets = 0;
             }
             
         }
@@ -272,7 +316,7 @@ public class GameManager : MonoBehaviour
     {
         if(orderNum == 0)
         {
-            if (comBets == playerBets)
+            if (playerAdds == 0)
             {
                 return true;
             }
@@ -282,7 +326,7 @@ public class GameManager : MonoBehaviour
             }
         }else if(orderNum == 1)
         {
-            if(lastPlayerBets == comBets)
+            if(comAdds == 0)
             {
                 return true;
             }
@@ -299,23 +343,28 @@ public class GameManager : MonoBehaviour
 
     public void ComAI()
     {
+        Debug.Log(howManyComTurn + "coms round");
         howManyComTurn++;
+        Debug.Log(howManyComTurn + "coms round");
         currentComState = 2; //게임의 재미가 반감될까봐 맨처음부터 Die를 고르는 경우는 최소화
         spObjects = GameObject.Find("Indicator").GetComponent<SpawnObjects>();
         if(comsFlow == 0) //공격적인 베팅, 먼저 Die는 절대 하지 않음, 상대를 Die 시키겠다는 느낌으로
         {
             if (howManyComTurn == 1 && howManyPlayerTurn == 0)
             {
+                Debug.Log("why 0 - 1");
                 if(comCardNum > 5)
                 {
                     checkCase = 0;
                     if (playerCardNum < 3)
                     {
                         comBets = Random.Range(8, 13);
+                        Debug.Log("here " + comBets);
                     }
                     else
                     {
                         comBets = Random.Range(6, 11);
+                        Debug.Log("here " + comBets);
                     }
                 }
                 else if(comCardNum <=5 && comCardNum > 1 || comCardNum == 0)
@@ -324,16 +373,19 @@ public class GameManager : MonoBehaviour
                     if (playerCardNum < 3)
                     {
                         comBets = Random.Range(5, 11);
+                        Debug.Log("here " + comBets);
                     }
                     else
                     {
                         comBets = Random.Range(3, 7);
+                        Debug.Log("here " + comBets);
                     }
                 }else if(comCardNum == 1)
                 {
                     checkCase = 2;
                     //자신의 숫자가 2일 때 오히려 과감한 베팅(상대가 자신이 ace인가 긴가민가하게 함)
-                    comBets = Random.Range(9, 15); 
+                    comBets = Random.Range(9, 15);
+                    Debug.Log("here " + comBets);
                 }
             }
             else
@@ -368,7 +420,8 @@ public class GameManager : MonoBehaviour
                         {
                             ranRaise = Random.Range(5, 9);
                         }
-                        comBets += ranRaise;
+                        comBets = playerAdds + ranRaise;
+                        Debug.Log("here " + comBets);
                         break;
                     case 1:
                         //컴의 숫자가 5보다 같거나 작고 여기서 2는 제외
@@ -380,21 +433,29 @@ public class GameManager : MonoBehaviour
                         {
                             ranRaise = Random.Range(4, 8);
                         }
-                        comBets += ranRaise;
+                        comBets = playerAdds + ranRaise;
+                        Debug.Log("here " + comBets);
                         break;
                     case 2:
                         //컴이 2를 가짐
                         ranRaise = Random.Range(7, 15);
-                        comChips += ranRaise;
+                        comBets = playerAdds + ranRaise;
+                        Debug.Log("here " + comBets);
                         break;
                 }
 
-                if (comBets >= comChips)
-                {
-                    comBets = comChips;
-                }
+            }
+
+            if (currentComState == 1)
+            {
+                return;
+            }
+            if (comBets >= comChips)
+            {
+                comBets = comChips;
             }
             //베팅 결정 후 공통 코드
+            Debug.Log("com will bet" + comBets);
             comChips -= comBets;
             Debug.Log("comact call");
             spObjects.ComActs();
@@ -407,16 +468,19 @@ public class GameManager : MonoBehaviour
                 {
                     checkCase = 0;
                     comBets = Random.Range(4, 8);
+                    Debug.Log("here " + comBets);
                 }
                 else if (comCardNum == 7 || comCardNum == 6)
                 {
                     checkCase = 1;
                     comBets = Random.Range(3, 7);
+                    Debug.Log("here " + comBets);
                 }
                 else if (comCardNum == 5 || comCardNum == 4)
                 {
                     checkCase = 2;
                     comBets = Random.Range(2, 4);
+                    Debug.Log("here " + comBets);
                 }
                 else if (comCardNum == 3 || comCardNum == 2 || comCardNum == 1)
                 {
@@ -443,10 +507,12 @@ public class GameManager : MonoBehaviour
                         whenDie = Random.Range(1, 3); //베팅이 1번또는2번 왔다갔다 했을 때 com이 die함
                         whenDie += howManyComTurn;
                         comBets = Random.Range(1, 3);
+                        Debug.Log("here " + comBets);
                     }
                     else
                     {
                         comBets = Random.Range(1, 3);
+                        Debug.Log("here " + comBets);
                     }
                 }              
             }
@@ -484,7 +550,7 @@ public class GameManager : MonoBehaviour
                     switch (checkCase)
                     {
                         case 0:
-                            if(comBets >= 8)
+                            if(playerAdds >= 5)
                             {
                                 //플레이어가 꽤 과감한 베팅을 한 경우, 오히려 적게 추가, 하지만 call이 아닌 레이즈가 되도록
                                 ranRaise = Random.Range(1, 4);
@@ -493,10 +559,11 @@ public class GameManager : MonoBehaviour
                             {
                                 ranRaise = Random.Range(1, 6);
                             }
-                            comBets += ranRaise;
+                            comBets = playerAdds + ranRaise;
+                            Debug.Log("here " + comBets);
                             break;
                         case 1:
-                            if (comBets >= 8)
+                            if (playerAdds >= 6)
                             {
                                 //플레이어가 꽤 과감한 베팅을 한 경우, 오히려 적게 추가, 하지만 call이 아닌 레이즈가 되도록
                                 ranRaise = Random.Range(1, 3);
@@ -505,11 +572,12 @@ public class GameManager : MonoBehaviour
                             {
                                 ranRaise = Random.Range(0, 5);
                             }
-                            comBets += ranRaise;
+                            comBets = playerAdds + ranRaise;
+                            Debug.Log("here " + comBets);
                             break;
                         case 2:
                             //com의 카드의 숫자가 5~6쯤 되면 우승의 확률이 반 정도가 됐으므로 상황에 따라 상대를 die 시켜보고자 하거나 본인이 die를 선택함
-                            if(comBets >= 8)
+                            if(playerAdds >= 6)
                             {
                                 //아마 상대가 com을 die 시키고자 하는 의도
                                 if (playerCardNum < 5) //버티면 com이 이김
@@ -517,7 +585,7 @@ public class GameManager : MonoBehaviour
                                     ranRaise = Random.Range(0, 4);
                                 }else if (playerCardNum >= 5) //com이 질 확률 높음
                                 {
-                                    if (comChips < 10 || comChips < comBets) //남은 칩의 개수가 9개 미만
+                                    if (comChips < 10 || comChips < playerAdds) //남은 칩의 개수가 9개 미만
                                     {
                                         int ran = Random.Range(0, 2); //다이할지 말지 결정
                                         if(ran == 0)
@@ -535,7 +603,7 @@ public class GameManager : MonoBehaviour
                                         ranRaise = Random.Range(0, 3);
                                     }
                                 }
-                            }else if (comBets >= 4 && comBets < 8)
+                            }else if (playerAdds >= 3 && playerAdds < 6)
                             {
                                 ranRaise = Random.Range(0, 3);
                             }
@@ -549,7 +617,8 @@ public class GameManager : MonoBehaviour
                                     ranRaise = Random.Range(0, 3);
                                 }
                             }
-                            comBets += ranRaise;
+                            comBets = playerAdds + ranRaise;
+                            Debug.Log("here " + comBets);
                             break;
                         case 3:
                             //컴이 이길 확률이 낮은 상태, 상대의 베팅에 따라서 바로 Die를 선택하기도 함, 일단 조심스럽게 베팅 but 올인으로 한 수를 걸기도 함
@@ -567,9 +636,9 @@ public class GameManager : MonoBehaviour
                                 }
                             }
 
-                            if(comBets >= 10) //플레이어의 과감한 베팅
+                            if(playerAdds >= 6) //플레이어의 과감한 베팅
                             {
-                                if(comChips <= comBets)
+                                if(comChips <= playerAdds)
                                 {
                                     currentComState = 1;
                                     return;
@@ -587,7 +656,7 @@ public class GameManager : MonoBehaviour
                                         ranRaise = Random.Range(0, 2);
                                     }
                                 }
-                            }else if(comBets < 10 && comBets >= 5){
+                            }else if(playerAdds < 6 && playerAdds >= 3){
                                 if (comChips <= 10) {
                                     if (playerCardNum >= 7)
                                     {
@@ -604,7 +673,7 @@ public class GameManager : MonoBehaviour
                                         }
                                         else
                                         {
-                                            comBets = comChips;
+                                            ranRaise = 100; //올인하게 만드는 것입니다.
                                         }
                                     }
                                 }
@@ -623,7 +692,7 @@ public class GameManager : MonoBehaviour
                             else //플레이어의 소심한 베팅
                             {
                                 //com의 착각을 부르기도 함
-                                int ran = Random.Range(0, 4);
+                                int ran = Random.Range(0, 3);
                                 if(ran == 0)
                                 {
                                     ranRaise = Random.Range(5, 10);
@@ -641,8 +710,8 @@ public class GameManager : MonoBehaviour
                                 }
                             }
 
-                            comBets += ranRaise;
-
+                            comBets = playerAdds + ranRaise;
+                            Debug.Log("here " + comBets);
                             break;
                         case 4:
                             //컴이 이길 확률이 없는 상태, 도중에 다이를 선택할 확률 높음, 하지만 player가 베팅을 약하게 한다면 따라가줄 확률을 더 높게
@@ -660,7 +729,7 @@ public class GameManager : MonoBehaviour
                                 }
                             }
 
-                            if(comBets < 5)
+                            if(playerAdds < 2)
                             {
                                 if(playerCardNum > 7)
                                 {
@@ -670,12 +739,22 @@ public class GameManager : MonoBehaviour
                                 {
                                     ranRaise = Random.Range(1, 5);
                                 }
+                            }else if(playerAdds >= 2 && playerAdds < 5)
+                            {
+                                if (playerCardNum > 7)
+                                {
+                                    ranRaise = Random.Range(0, 2);
+                                }
+                                else
+                                {
+                                    ranRaise = Random.Range(1, 4);
+                                }
                             }
                             else
                             {
                                 if(playerCardNum > 7)
                                 {
-                                    if(comChips <= comBets)
+                                    if(comChips <= playerAdds)
                                     {
                                         currentComState = 1;
                                         return;
@@ -696,7 +775,7 @@ public class GameManager : MonoBehaviour
                                 }
                                 else
                                 {
-                                    if(comChips <= comBets)
+                                    if(comChips <= playerAdds)
                                     {
                                         int ran = Random.Range(0, 2);
                                         if(ran == 0)
@@ -720,7 +799,8 @@ public class GameManager : MonoBehaviour
                                     }
                                 }
                             }
-                            comBets += ranRaise;
+                            comBets = playerAdds + ranRaise;
+                            Debug.Log("here " + comBets);
                             break;
                     }
                 }
@@ -730,13 +810,14 @@ public class GameManager : MonoBehaviour
             {
                 return;
             }
-            else
+            if(comBets >= comChips)
             {
-                comChips -= comBets; //베팅한 만큼 가진 칩에서 제거
-                Debug.Log("comact call");
-                spObjects.ComActs();
+                comBets = comChips;
             }
-            
+            Debug.Log("com will bet" + comBets);
+            comChips -= comBets; //베팅한 만큼 가진 칩에서 제거
+            Debug.Log("comact call");
+            spObjects.ComActs();
         }
         /*else if(comsFlow == 2) //소심한 베팅, 플레이어의 카드 숫자에 가장 많이 의존, 플레이어가 자신의 숫자가 높다고 착각하게 만들 수도 있음, Die를 선언할 확률이 높음
         {
