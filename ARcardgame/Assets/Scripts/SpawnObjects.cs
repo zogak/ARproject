@@ -4,7 +4,6 @@ using UnityEngine;
 
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
-using UnityEngine.EventSystems;
 
 public class SpawnObjects : MonoBehaviour
 {
@@ -142,7 +141,7 @@ public class SpawnObjects : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, Mathf.Infinity))
         {
-            if (hit.transform.CompareTag("board") && GameManager.manager.playerChips >= GameManager.manager.playerBets) //player가 베팅한 칩의 수가 남은 칩의 수보다 작거나 같을 때
+            if ((hit.transform.CompareTag("board") || hit.transform.CompareTag("Chip")) && GameManager.manager.playerChips >= GameManager.manager.playerBets && setBoard == 1) //player가 베팅한 칩의 수가 남은 칩의 수보다 작거나 같을 때
             {
                 Quaternion qRotation = Quaternion.Euler(0f, 0f, 30f);
                 Instantiate(playerChip, hits[0].pose.position + Vector3.up * (transform.localScale.y * 30), qRotation);

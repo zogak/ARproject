@@ -208,7 +208,7 @@ public class GameManager : MonoBehaviour
         {
             comCardNum = 7;
         }
-        else if (comCard.Equals("9ofDiamonds (Instance)"))
+        else if (comCard.Equals("9ofDIamonds (Instance)"))
         {
             comCardNum = 8;
         }
@@ -346,6 +346,7 @@ public class GameManager : MonoBehaviour
         Debug.Log(howManyComTurn + "coms round");
         howManyComTurn++;
         Debug.Log(howManyComTurn + "coms round");
+        Debug.Log("Die Timing set " + whenDie);
         currentComState = 2; //게임의 재미가 반감될까봐 맨처음부터 Die를 고르는 경우는 최소화
         spObjects = GameObject.Find("Indicator").GetComponent<SpawnObjects>();
         if(comsFlow == 0) //공격적인 베팅, 먼저 Die는 절대 하지 않음, 상대를 Die 시키겠다는 느낌으로
@@ -396,7 +397,7 @@ public class GameManager : MonoBehaviour
                     {
                         checkCase = 0;
                     }
-                    else if (comCardNum <= 5 && comCardNum > 1 || comCardNum == 0)
+                    else if ((comCardNum <= 5 && comCardNum > 1) || comCardNum == 0)
                     {
                         checkCase = 1;
                     }
@@ -537,6 +538,8 @@ public class GameManager : MonoBehaviour
                         checkCase = 4;
                     }
                 }
+
+                Debug.Log("CheckCase " + checkCase);
 
                 if(howManyComTurn == whenDie)
                 {
@@ -722,6 +725,7 @@ public class GameManager : MonoBehaviour
                                 {
                                     whenDie = Random.Range(1, 3);
                                     whenDie += howManyComTurn;
+                                    Debug.Log("Die activated: " + whenDie);
                                 }
                                 else
                                 {
@@ -803,6 +807,7 @@ public class GameManager : MonoBehaviour
                             Debug.Log("here " + comBets);
                             break;
                     }
+                    comBets = playerAdds + ranRaise;
                 }
             }
 
