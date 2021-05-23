@@ -1,7 +1,7 @@
 ## AR Indian Poker Game
 Individual competition Indian Poker Game with AR
 
-### Project Introduction
+### Requirements
 * Classification : AR game application
 * Unity Version : 2020.2.7f1
 * Platform : AR Foundation, AR Core
