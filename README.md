@@ -24,3 +24,9 @@ __2. GamePlay1 Scene__
 __3. GamePlay2 Scene__
 
 <img src="https://user-images.githubusercontent.com/76643037/118352289-9dfb9100-b59b-11eb-909f-5333d060fd9e.jpg" width="60%">
+
+
+### Contributors
+Kim Gyeongjin([**@attowls**](https://github.com/attowls)) | Kim Yejin ([**@yejinstar**](https://github.com/yejinstar))| Song Jihye ([**@JH-kor**](https://github.com/JH-kor))| Jang Yoona ([**@zogak**](https://github.com/zogak))
+----------------- | ----------------- | ----------------- | ----------------- |
+   Game Play      | Game Play         | UI                | AR features
